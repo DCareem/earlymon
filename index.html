@@ -133,7 +133,7 @@ a:hover { text-decoration-thickness: 2px; }
 .jpc { color: var(--jp); font-weight: 700; } .usc { color: var(--us); font-weight: 700; } .euc { color: var(--eu); font-weight: 700; }
 .panel { background: linear-gradient(180deg, var(--panel-2), var(--panel)); border: 1px solid var(--line); border-radius: 16px; }
 .figure { padding: 22px; margin: 22px 0 0; }
-.figure h3 { font-size: 20px; }
+.figure .legend { margin-bottom: 8px; }
 .figure .sub { font-size: 14px; color: var(--muted); margin: 6px 0 12px; }
 .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 14px; color: var(--muted); }
 .legend i { display: inline-block; width: 20px; height: 4px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
@@ -301,34 +301,32 @@ footer p { margin: 0 0 8px; }
 
   <header class="hero">
     <div>
-      <div class="hero-kicker"><b>City League</b>Japan's results, every weekend</div>
+      <div class="hero-kicker"><b>City League</b>Updated every weekend</div>
       <h1>Pokémon cards rising in <em>Japan</em>, before the English price moves</h1>
-      <p class="lede">Japan gets every Pokémon TCG set 3 to 4 months before we do, and its City League results are public. When an older English card suddenly starts showing up in Japan's winning decks, its English price has usually climbed a few weeks later. I track that every weekend and send out the cards while they're still cheap.</p>
+      <p class="lede">Japan gets every set 3 to 4 months early. When an older card starts winning there, its English price tends to follow. EarlyMon flags those cards while they're still cheap.</p>
       <div class="cta-row">
         <a class="cta" href="#join">Get the weekly list</a>
-        <p class="cta-note">Free weekly email, or $5 a month for early access once it launches. You pay nothing now.</p>
+        <p class="cta-note">Free, or $5/month for early access. Nothing to pay now.</p>
       </div>
     </div>
     <div class="hero-art">
       <div class="ring" aria-hidden="true"></div>
       <div class="sun" aria-hidden="true"></div>
-      <div class="tcg" role="img" aria-label="A past signal drawn as a trading card: Unfair Stamp, Japan share 3% to 18%, US price $1.20 to $15.23, +1155% versus the market after 60 days"><div class="tcg-face"><div class="tcg-top"><span class="tcg-stage">Past signal</span><span class="tcg-hp"><small>60 d vs mkt</small>+1155%</span></div><div class="tcg-name" translate="no">Unfair Stamp</div><div class="tcg-art"><svg id="tcg-art" viewBox="0 0 300 118" preserveAspectRatio="none" aria-hidden="true"></svg></div><div class="tcg-caption">Red: Japan&#39;s winning decks. Gold: US price. Nov 2025 to today.</div><div class="tcg-moves"><div class="tcg-move"><i style="background:var(--card-jp)"></i><span>Japan&#39;s winning decks</span><b style="color:var(--card-jp)">3% → 18%</b></div><div class="tcg-move"><i style="background:var(--card-us)"></i><span>TCGplayer, US</span><b style="color:var(--card-us)">$1.20 → $15.23</b></div><div class="tcg-move"><i style="background:var(--card-eu)"></i><span>Cardmarket, EU</span><b style="color:var(--card-eu)">€1.31 → €10.43</b></div></div><p class="tcg-flavor">Japan started winning with it in the week of 26 Jan 2026. The US price followed 9 weeks later; Europe by 27 Apr 2026.</p><div class="tcg-foot"><span>TWM 165</span><span>EarlyMon · 1 of 14</span></div></div><div class="tcg-foil" aria-hidden="true"></div><div class="tcg-glare" aria-hidden="true"></div></div><a class="hint" href="#record">See the other past signals, losers included</a>
+      <div class="tcg" role="img" aria-label="A past signal drawn as a trading card: Unfair Stamp, Japan share 3% to 18%, US price $1.20 to $15.23, +1155% versus the market after 60 days"><div class="tcg-face"><div class="tcg-top"><span class="tcg-stage">Past signal</span><span class="tcg-hp"><small>60 d vs mkt</small>+1155%</span></div><div class="tcg-name" translate="no">Unfair Stamp</div><div class="tcg-art"><svg id="tcg-art" viewBox="0 0 300 118" preserveAspectRatio="none" aria-hidden="true"></svg></div><div class="tcg-caption">Red: Japan share · Gold: US price</div><div class="tcg-moves"><div class="tcg-move"><i style="background:var(--card-jp)"></i><span>Japan&#39;s winning decks</span><b style="color:var(--card-jp)">3% → 18%</b></div><div class="tcg-move"><i style="background:var(--card-us)"></i><span>TCGplayer, US</span><b style="color:var(--card-us)">$1.20 → $15.23</b></div><div class="tcg-move"><i style="background:var(--card-eu)"></i><span>Cardmarket, EU</span><b style="color:var(--card-eu)">€1.31 → €10.43</b></div></div><p class="tcg-flavor">Picked up in Japan the week of 26 Jan 2026. US price up 9 weeks later.</p><div class="tcg-foot"><span>TWM 165</span><span>EarlyMon · 1 of 14</span></div></div><div class="tcg-foil" aria-hidden="true"></div><div class="tcg-glare" aria-hidden="true"></div></div><a class="hint" href="#record">All past calls</a>
     </div>
   </header>
 
   <section class="section">
     <div class="kicker"><span class="ja" lang="ja" aria-hidden="true">実例</span></div>
-    <h2>What happened with Unfair Stamp</h2>
+    <h2>Unfair Stamp, 2026</h2>
     <div class="figure panel">
-      <h3 translate="no">Unfair Stamp</h3>
-      <div class="sub">Weekly data. The red area is how many of Japan's City League winning decks ran it. The lines are its English price in the US and in Europe.</div>
       <div class="legend">
-        <span><i style="background:var(--jp);opacity:.6;height:12px"></i>Japan: share of winning decks (left)</span>
-        <span><i style="background:var(--us)"></i>US, TCGplayer, $ (right)</span>
-        <span><i style="background:var(--eu)"></i>Europe, Cardmarket, € (right)</span>
+        <span><i style="background:var(--jp);opacity:.6;height:12px"></i>Share of Japan's winning decks (left)</span>
+        <span><i style="background:var(--us)"></i>TCGplayer, $ (right)</span>
+        <span><i style="background:var(--eu)"></i>Cardmarket, € (right)</span>
       </div>
       <div class="svgwrap"><svg id="stamp" viewBox="0 0 920 360" role="img" aria-label="Unfair Stamp: Japanese play share rises in January 2026, US price jumps in February, European price follows in March"></svg></div>
-      <p class="small">Week of 26 Jan 2026: Japan goes from 3% to 18% of winning decks while it costs <span class="usc">$1.20</span> in the US. Week of 30 Mar 2026: <span class="usc">$15.23</span>. Europe follows later (<span class="euc">€1.31 → €10.43</span> by the week of 27 Apr 2026). Latest: <span class="usc">$15.59</span> / <span class="euc">€9.38</span>.</p>
+      <p class="small">Week of 26 Jan 2026: 3% → 18% of Japan's winning decks, <span class="usc">$1.20</span> in the US. Week of 30 Mar 2026: <span class="usc">$15.23</span>. Europe: <span class="euc">€1.31 → €10.43</span> by 27 Apr 2026.</p>
     </div>
   </section>
 
@@ -343,7 +341,7 @@ footer p { margin: 0 0 8px; }
           <div class="tcg-move"><i style="background:var(--gold-2)"></i><span>Goldin, Feb 2026</span><b>$16.49M</b></div>
           <div class="tcg-move"><i style="background:var(--card-jp)"></i><span>Released in</span><b style="color:var(--card-jp)">Japan only</b></div>
         </div>
-        <p class="tcg-flavor">A prize for winners of a Japanese illustration contest, never sold in shops.</p>
+        <p class="tcg-flavor">Awarded, never sold in shops.</p>
         <div class="tcg-foot"><span>1998 PROMO</span><span>EarlyMon legends 1/2</span></div>
       </div><div class="tcg-foil" aria-hidden="true"></div></div>
       <div class="face back" aria-hidden="true"><div class="back-face"><div class="disc"></div><div class="word">Early<em>Mon</em></div></div></div>
@@ -352,34 +350,34 @@ footer p { margin: 0 0 8px; }
       <div class="kicker"><span class="ja" lang="ja" aria-hidden="true">伝説のカード</span></div>
       <h3 translate="no">Pikachu Illustrator</h3>
       <div class="sold">$16,492,000</div>
-      <p class="small">Given out in Japan in 1998 to winners of an illustration contest. Logan Paul's copy, the only PSA 10, sold at Goldin in February 2026. No trading card has ever sold for more at auction.</p>
-      <p class="note">I drew this one myself. It's not the card's original artwork.</p>
+      <p class="small">A 1998 Japanese contest prize. The only PSA 10 sold at Goldin in February 2026, a record for any trading card.</p>
+      <p class="note">Illustration by EarlyMon, not the original artwork.</p>
     </div>
   </div>
 
   <section class="section">
     <div class="kicker"><span class="ja" lang="ja" aria-hidden="true">過去の実績</span></div>
-    <h2 id="record">Past calls, losers included</h2>
-    <div class="prose"><p>I went back through Japan's results from 2024 to May 2026 and wrote the rules down before looking at any prices. Every time an older card jumped in Japan's winning decks because of new Japanese cards, I checked what its English price did over the next 60 days compared with the rest of the market.</p></div>
+    <h2 id="record">Track record</h2>
+    <div class="prose"><p>Japan's results from 2024 to May 2026, tested with fixed rules: an older card jumps in Japan's winning decks, and its English price is compared with the market 60 days later.</p></div>
     <div class="stats">
-      <div class="panel"><b class="gold">14</b><span>calls since 2024, on cards worth $0.75 or more</span></div>
-      <div class="panel"><b>12 of 14</b><span>beat the market 60 days later</span></div>
-      <div class="panel"><b class="usc">+45%</b><span>median gain above the market in the US after 60 days</span></div>
-      <div class="panel"><b class="euc">+36%</b><span>median gain above the market in Europe after 90 days (Europe is slower)</span></div>
+      <div class="panel"><b class="gold">14</b><span>calls since 2024</span></div>
+      <div class="panel"><b>12 of 14</b><span>beat the market</span></div>
+      <div class="panel"><b class="usc">+45%</b><span>median vs market, US, 60 days</span></div>
+      <div class="panel"><b class="euc">+36%</b><span>median vs market, Europe, 90 days</span></div>
     </div>
     <div class="tablewrap panel"><table>
-      <thead><tr><th>Card, date of Japan signal</th><th>Share of Japan's winning decks</th><th class="r">US price then</th><th class="r">60 days later, vs market</th></tr></thead>
+      <thead><tr><th>Card</th><th>Japan share</th><th class="r">US price</th><th class="r">60 days vs market</th></tr></thead>
       <tbody id="calls"></tbody>
     </table></div>
-    <p class="small">Losers included. “vs market” is the card's price change minus the median change of every card I track over the same days. Past results don't guarantee anything.</p>
+    <p class="small">Vs market: the card's price change minus the median change of all tracked cards. Past results don't guarantee future ones.</p>
   </section>
 
   <section class="section">
     <div class="kicker"><span class="ja" lang="ja" aria-hidden="true">今週末のシティリーグ</span></div>
     <h2>Japan this weekend <span class="pill">new season</span></h2>
-    <div class="prose"><p>Japan's new City League season started on 26–28 Sep 2026, with 62 tournaments and 62 winning decklists. These English cards are showing up a lot more than at the end of last season. One weekend is too early to call anything, so treat this as a watchlist. I'll keep or drop each card as more results come in.</p></div>
+    <div class="prose"><p>First weekend of the new season, 26–28 Sep 2026: 62 tournaments. English cards played far more than at the end of last season. A watchlist, not calls yet.</p></div>
     <div class="tablewrap panel"><table>
-      <thead><tr><th>Card</th><th>Share of winning decks, last season → this weekend</th><th class="r">US</th><th class="r">Europe</th></tr></thead>
+      <thead><tr><th>Card</th><th>Japan share, last season → now</th><th class="r">US</th><th class="r">Europe</th></tr></thead>
       <tbody id="watch"></tbody>
     </table></div>
   </section>
@@ -395,7 +393,7 @@ footer p { margin: 0 0 8px; }
           <div class="tcg-move"><i style="background:#e8590c"></i><span>Heritage, Dec 2025</span><b>$550K</b></div>
           <div class="tcg-move"><i style="background:var(--card-us)"></i><span>Grade</span><b style="color:var(--card-us)">PSA 10</b></div>
         </div>
-        <p class="tcg-flavor">The most wanted card from the first English set.</p>
+        <p class="tcg-flavor">The chase card of the first English set.</p>
         <div class="tcg-foot"><span>BASE SET 4/102</span><span>EarlyMon legends 2/2</span></div>
       </div><div class="tcg-foil" aria-hidden="true"></div></div>
       <div class="face back" aria-hidden="true"><div class="back-face"><div class="disc"></div><div class="word">Early<em>Mon</em></div></div></div>
@@ -404,18 +402,18 @@ footer p { margin: 0 0 8px; }
       <div class="kicker"><span class="ja" lang="ja" aria-hidden="true">伝説のカード</span></div>
       <h3 translate="no">Charizard, 1st Edition</h3>
       <div class="sold">$550,000</div>
-      <p class="small">The Base Set Charizard from 1999, the card everyone wanted as a kid. A PSA 10 1st Edition copy sold at Heritage Auctions in December 2025, a record for the card.</p>
-      <p class="note">I drew this one myself. It's not the card's original artwork.</p>
+      <p class="small">Base Set, 1999. A PSA 10 sold at Heritage Auctions in December 2025, a record for the card.</p>
+      <p class="note">Illustration by EarlyMon, not the original artwork.</p>
     </div>
   </div>
 
   <section class="section">
     <div class="kicker"><span class="ja" lang="ja" aria-hidden="true">しくみ</span></div>
-    <h2>How I do it</h2>
+    <h2>How it works</h2>
     <div class="steps">
-      <div class="panel"><b>Read every result</b><span>Limitless publishes every Japanese City League winner and decklist. In season that's 40 to 100 tournaments a weekend.</span></div>
-      <div class="panel"><b>Find the jumps</b><span>I look for cards whose share of winning decks jumps, mostly older cards that a new Japanese-only card has just made good.</span></div>
-      <div class="panel"><b>Send the list</b><span>You get the card, why it's moving, and what it costs today on TCGplayer and Cardmarket.</span></div>
+      <div class="panel"><b>Every result</b><span>All of Japan's City League winning decklists, every weekend.</span></div>
+      <div class="panel"><b>Every jump</b><span>Older cards that suddenly start winning because of new Japanese cards.</span></div>
+      <div class="panel"><b>One list</b><span>Each card with its TCGplayer and Cardmarket price.</span></div>
     </div>
   </section>
 
@@ -424,14 +422,14 @@ footer p { margin: 0 0 8px; }
     <h2 id="join">Get the list</h2>
     <form id="waitlist" novalidate><input type="hidden" name="access_key" value="1ff23075-a99e-469b-a9a4-4619c6061900"><input type="hidden" name="subject" value="New waitlist sign-up"><input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
       <fieldset>
-        <legend>Pick one. You won't be charged anything now.</legend>
+        <legend>Choose a plan. Nothing to pay now.</legend>
         <div class="plans">
           <label class="plan" for="plan-free"><input type="radio" name="plan" value="free" id="plan-free">
             <span class="name">Free</span><span class="price">$0</span>
-            <span class="item">One email a week with two or three cards</span><span class="item">The season's biggest movers</span></label>
+            <span class="item">Two or three cards a week</span><span class="item">The season's biggest movers</span></label>
           <label class="plan paid" for="plan-paid"><input type="radio" name="plan" value="paid-5-month" id="plan-paid">
             <span class="name">Early access</span><span class="price">$5 <small>/ month at launch</small></span>
-            <span class="item">The full weekly list</span><span class="item">An alert as soon as the weekend's Japanese results are in</span><span class="item">US and European prices for every card</span></label>
+            <span class="item">The full weekly list</span><span class="item">Alerts as soon as results are in</span><span class="item">US and EU prices</span></label>
         </div>
       </fieldset>
       <div class="fields panel">
@@ -455,7 +453,7 @@ footer p { margin: 0 0 8px; }
             <label><input type="radio" name="profile" value="collector" id="profile-collector"> collect</label>
           </div>
         </fieldset>
-        <label class="consent"><input type="checkbox" id="consent" name="consent" required> Email me about EarlyMon's launch and the weekly list. To unsubscribe, reply to any email.</label>
+        <label class="consent"><input type="checkbox" id="consent" name="consent" required> Email me about EarlyMon. Unsubscribe by replying to any email.</label>
         <button type="submit" id="submit">Join the waitlist</button>
         <div class="msg" id="msg" role="status" aria-live="polite"></div>
       </div>
@@ -465,15 +463,14 @@ footer p { margin: 0 0 8px; }
   <section class="section">
     <div class="kicker"><span class="ja" lang="ja" aria-hidden="true">よくある質問</span></div>
     <h2>Questions</h2>
-    <details class="panel"><summary>Is this financial advice?</summary><p>No. It's which cards Japan is winning with and what they cost. Prices go down too.</p></details>
-    <details class="panel"><summary>Why Japan?</summary><p>Japan gets each set 3 to 4 months early and publishes its City League decklists. What wins there usually gets copied in English once the cards come out.</p></details>
-    <details class="panel"><summary>When does the paid list start?</summary><p>Once a rise in the new season holds for more than one weekend. People on the waitlist hear first, and you only pay if you decide to subscribe then.</p></details>
+    <details class="panel"><summary>Is this financial advice?</summary><p>No. Prices can fall as well as rise.</p></details>
+    <details class="panel"><summary>Why Japan?</summary><p>Japan gets each set 3 to 4 months early. What wins there usually gets played in English once the cards arrive.</p></details>
+    <details class="panel"><summary>When does the paid list start?</summary><p>Once a new-season rise holds for more than one weekend. The waitlist hears first.</p></details>
   </section>
 
   <footer>
-    <p>EarlyMon is not affiliated with, endorsed by or sponsored by The Pokémon Company, Nintendo, Game Freak, Creatures, TCGplayer or Cardmarket. Pokémon and card names are trademarks of their owners.</p>
-    <p>Tournament results and prices: Limitless TCG. Data updated 29 Sep 2026.</p>
-    <p>Privacy: your email and answers are only used to contact you about EarlyMon. They're stored by the form provider (Web3Forms) and never sold. To be removed, reply to any email.</p>
+    <p>Not affiliated with The Pokémon Company, Nintendo, Game Freak, Creatures, TCGplayer or Cardmarket. Card names are trademarks of their owners.</p>
+    <p>Data: Limitless TCG, updated 29 Sep 2026. Emails are used only for EarlyMon, stored by Web3Forms and never sold.</p>
   </footer>
 </div>
 
@@ -576,9 +573,9 @@ $("#waitlist").addEventListener("submit", async e => {
   const msg = $("#msg"), btn = $("#submit"), email = $("#email").value.trim();
   const fail = (text, field) => { msg.className = "msg err"; msg.textContent = text; field && field.focus(); };
   msg.className = "msg"; msg.textContent = "";
-  if (!e.target.querySelector("input[name=plan]:checked")) return fail("Pick Free or Early access above.", $("#plan-free"));
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail("Enter a valid email address, like name@example.com.", $("#email"));
-  if (!$("#consent").checked) return fail("Tick the box so I can email you.", $("#consent"));
+  if (!e.target.querySelector("input[name=plan]:checked")) return fail("Choose a plan above.", $("#plan-free"));
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail("Enter a valid email address.", $("#email"));
+  if (!$("#consent").checked) return fail("Tick the box to continue.", $("#consent"));
   if (!FORM_ENDPOINT.startsWith("https://")) return fail("The waitlist is not connected yet. Please try again later.");
   btn.disabled = true; btn.textContent = "Joining…";
   const fd = new FormData(e.target);
@@ -586,10 +583,10 @@ $("#waitlist").addEventListener("submit", async e => {
   try {
     const r = await fetch(FORM_ENDPOINT, { method: "POST", body: fd, headers: { Accept: "application/json" } });
     if (!r.ok) throw new Error(r.status);
-    msg.className = "msg ok"; msg.textContent = "You're in. The first email goes out once the first picks are confirmed.";
+    msg.className = "msg ok"; msg.textContent = "You're on the list.";
     e.target.reset();
   } catch (err) {
-    fail("That didn't go through. Check your connection and press Join again.");
+    fail("That didn't go through. Try again.");
   } finally { btn.disabled = false; btn.textContent = "Join the waitlist"; }
 });
 </script>
