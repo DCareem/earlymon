@@ -5,9 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>EarlyMon</title>
 <meta name="description" content="Japan plays every Pokémon card set 3 to 4 months before the English release. EarlyMon reads Japan's tournaments every week and flags the cards rising there while they are still cheap in English.">
-<meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#f4f6f9" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0f1319" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0b0f2a">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://dcareem.github.io/earlymon/">
 <meta property="og:title" content="EarlyMon: Pokémon cards rising in Japan, before the English price moves">
@@ -17,254 +16,354 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="EarlyMon. Unfair Stamp: Japan's winning decks 3% to 18%, US price $1.20 to $15.23.">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23c8102e'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23ff3b4f'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Dela+Gothic+One&family=JetBrains+Mono:wght@400;600;700&display=swap">
 <style>
-/* Layout: one reading column; the hero pairs the thesis with its proof (a past signal as a price "receipt"). */
+/* Layout: a night-sky page with one bold object: the past signal drawn as a holo trading card in front of a rising sun.
+   Everything else stays quiet so the card and the data read first. Single dark look by choice. */
 :root {
-  --bg: #f4f6f9; --panel: #ffffff; --ink: #1b2130; --muted: #5d6677; --faint: #7b8394; --line: #dce1e9; --soft: #eaeef4;
-  --jp: #c8102e; --jp-soft: #fbe3e7; --on-jp: #ffffff; --us: #2b5fd9; --eu: #b06e00; --good: #1e7b4f; --bad: #b3372f;
-  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --bg: #0b0f2a; --bg-2: #10164a; --panel: #141a45; --panel-2: #1a2154; --line: #2a3270; --soft: #1d2458;
+  --ink: #f2f3fb; --muted: #aab1d8; --faint: #7d85b3;
+  --jp: #ff4d5e; --sun: #ff3b4f; --gold: #ffd23f; --gold-2: #f2a900; --on-gold: #14173a;
+  --us: #86a8ff; --eu: #ffa94d; --good: #4fe3a1; --bad: #ff7a85;
+  --card-face: #fbf4df; --card-ink: #1a1d38; --card-muted: #5b5f7c; --card-jp: #c8102e; --card-us: #2450c9; --card-eu: #a85b00;
+  --display: "Dela Gothic One", "Arial Black", "Segoe UI", system-ui, sans-serif;
   --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
-  color-scheme: light;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0f1319; --panel: #171c24; --ink: #e7eaf0; --muted: #a0a9b8; --faint: #7d8697; --line: #283040; --soft: #1e2530;
-    --jp: #ff5a6e; --jp-soft: #3a1820; --on-jp: #1a060a; --us: #7ea2ff; --eu: #f2b84b; --good: #5cc48a; --bad: #ef7d73;
-    color-scheme: dark;
-  }
+  color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 var(--body); }
+body {
+  margin: 0; color: var(--ink); font: 17px/1.6 var(--body);
+  background:
+    radial-gradient(1100px 700px at 88% -8%, rgba(255, 59, 79, .20), transparent 62%),
+    radial-gradient(900px 650px at -12% 28%, rgba(88, 110, 255, .18), transparent 62%),
+    radial-gradient(900px 700px at 110% 78%, rgba(0, 200, 255, .08), transparent 60%),
+    var(--bg);
+}
+/* halftone dots, fading down the page */
+body::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 1400px; pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, .075) 1.1px, transparent 1.7px); background-size: 18px 18px;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0%, transparent 100%); }
 a, button, label, summary { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
-:focus-visible { outline: 3px solid var(--us); outline-offset: 2px; }
-.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.skip { position: absolute; left: 16px; top: -60px; background: var(--panel); color: var(--ink); padding: 8px 14px; border-radius: 8px; z-index: 2; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.skip { position: absolute; left: 16px; top: -60px; background: var(--gold); color: var(--on-gold); padding: 8px 14px; border-radius: 8px; z-index: 5; font-weight: 700; }
 .skip:focus { top: 12px; }
-.wrap { max-width: 1000px; margin: 0 auto; padding: 28px 20px 80px; }
+.wrap { position: relative; max-width: 1040px; margin: 0 auto; padding: 26px 20px 80px; }
 .prose { max-width: 64ch; }
-h1, h2, h3 { font-family: var(--display); line-height: 1.1; text-wrap: balance; margin: 0; }
-h1 { font-size: clamp(36px, 6vw, 60px); font-weight: 800; letter-spacing: -0.02em; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.12; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(32px, 4.5vw, 50px); letter-spacing: -0.005em; }
 h1 em { font-style: normal; color: var(--jp); }
-h2 { font-size: clamp(26px, 3.6vw, 34px); font-weight: 800; margin-top: 64px; scroll-margin-top: 20px; }
+h2 { font-size: clamp(25px, 3.3vw, 34px); scroll-margin-top: 20px; }
+.section { margin-top: 76px; }
+.kicker { display: flex; align-items: center; gap: 10px; font: 700 13px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.kicker .ja { font: 400 15px var(--display); letter-spacing: .08em; color: var(--jp); }
+.kicker::after { content: ""; flex: 1; max-width: 120px; height: 1px; background: linear-gradient(90deg, var(--line), transparent); }
 p { margin: 12px 0; text-wrap: pretty; }
-a { color: var(--us); text-underline-offset: 2px; }
+a { color: var(--us); text-underline-offset: 3px; }
 a:hover { text-decoration-thickness: 2px; }
 
-.brand { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 36px; }
-.brand b { font: 800 20px var(--display); }
-.brand b span { color: var(--jp); }
-.cta-small { font: 600 14px var(--body); text-decoration: none; color: var(--ink); border: 1px solid var(--line); padding: 7px 14px; border-radius: 999px; background: var(--panel); transition: border-color .15s; }
-.cta-small:hover { border-color: var(--ink); }
+.brand { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 30px; }
+.logo { display: flex; align-items: center; gap: 10px; font: 400 22px var(--display); color: var(--ink); text-decoration: none; }
+.logo i { width: 18px; height: 18px; border-radius: 50%; background: var(--sun); box-shadow: 0 0 18px rgba(255, 59, 79, .7); }
+.logo em { font-style: normal; color: var(--jp); }
+.cta-small { font: 700 14px var(--body); text-decoration: none; color: var(--ink); border: 1px solid var(--line); padding: 8px 15px; border-radius: 999px; background: rgba(20, 26, 69, .7); transition: border-color .15s, color .15s; }
+.cta-small:hover { border-color: var(--gold); color: var(--gold); }
 
-/* hero: thesis left, proof right; stacks on phones */
-.hero { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 36px; align-items: end; }
-.lede { font-size: 19px; color: var(--muted); max-width: 56ch; margin-top: 16px; }
-.cta { display: inline-block; margin-top: 18px; background: var(--jp); color: var(--on-jp); font: 700 17px var(--body); padding: 13px 22px; border-radius: 10px; text-decoration: none; transition: background-color .15s; }
-.cta:hover, button:hover:not(:disabled) { background: color-mix(in srgb, var(--jp) 86%, var(--ink)); }
-.cta-note { font-size: 14.5px; color: var(--muted); margin: 10px 0 0; }
-.receipt { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; font-variant-numeric: tabular-nums; }
-.receipt-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
-.receipt-head .set { font: 600 12px var(--mono); color: var(--faint); letter-spacing: .04em; }
-.receipt-name { display: block; font: 800 24px/1.15 var(--display); margin: 10px 0 12px; }
-.receipt dl { margin: 0; display: grid; gap: 0; }
-.receipt dl div { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 8px 0; border-top: 1px dashed var(--line); }
-.receipt dt { font-size: 14.5px; color: var(--muted); }
-.receipt dd { margin: 0; font: 700 18px var(--display); white-space: nowrap; }
-.receipt p { font-size: 14px; color: var(--muted); margin: 10px 0 0; }
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 40px; align-items: center; min-height: 560px; }
+.hero-kicker { display: inline-flex; align-items: center; gap: 10px; font: 700 12.5px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px 6px 8px; margin-bottom: 20px; background: rgba(20, 26, 69, .6); }
+.hero-kicker b { white-space: nowrap; font: 400 12px var(--display); letter-spacing: .06em; color: var(--on-gold); background: var(--gold); border-radius: 999px; padding: 3px 9px; }
+.lede { font-size: 19px; color: var(--muted); max-width: 54ch; margin-top: 18px; }
+.cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: 24px; }
+.cta { display: inline-block; background: linear-gradient(180deg, var(--gold), var(--gold-2)); color: var(--on-gold); font: 400 17px var(--display); letter-spacing: .01em; padding: 15px 24px; border-radius: 12px; text-decoration: none;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset, 0 10px 30px rgba(255, 190, 0, .25); transition: transform .15s, box-shadow .15s; }
+.cta:hover { transform: translateY(-2px); box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset, 0 14px 36px rgba(255, 190, 0, .38); }
+.cta-note { font-size: 14.5px; color: var(--muted); margin: 0; max-width: 30ch; }
 
+.hero-art { position: relative; display: grid; place-items: center; min-height: 560px; padding-bottom: 40px; }
+.sun { position: absolute; width: min(470px, 100%); aspect-ratio: 1; border-radius: 50%; top: 50%; left: 50%; transform: translate(-44%, -54%);
+  background: radial-gradient(circle at 38% 34%, #ff7482 0%, var(--sun) 46%, #c0102a 100%); box-shadow: 0 0 120px rgba(255, 59, 79, .45); }
+.ring { position: absolute; width: min(560px, 118%); aspect-ratio: 1; border-radius: 50%; top: 50%; left: 50%; transform: translate(-46%, -54%); border: 1px dashed rgba(255, 210, 63, .25); }
+
+/* the trading card */
+.tcg { position: relative; width: min(330px, 100%); aspect-ratio: 63 / 88; border-radius: 18px; padding: 11px;
+  background: linear-gradient(140deg, #fff3b0 0%, var(--gold) 22%, #e8a400 48%, #ffe27a 70%, #d69300 100%);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, .55), 0 0 0 1px rgba(0, 0, 0, .35);
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) rotate(-3deg); transition: transform .5s cubic-bezier(.2, .8, .2, 1); will-change: transform; }
+.tcg.is-live { transition: transform .08s linear; }
+.tcg-face { position: relative; height: 100%; border-radius: 10px; background: linear-gradient(180deg, var(--card-face), #efe3bf); color: var(--card-ink); padding: 10px 12px 9px; display: flex; flex-direction: column; overflow: hidden; }
+.tcg-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.tcg-stage { font: 700 9.5px var(--mono); letter-spacing: .1em; text-transform: uppercase; background: var(--card-ink); color: var(--card-face); border-radius: 4px; padding: 2px 6px; }
+.tcg-hp { display: flex; align-items: baseline; gap: 4px; color: var(--card-jp); font: 400 20px var(--display); white-space: nowrap; }
+.tcg-hp small { font: 700 8.5px var(--mono); letter-spacing: .06em; color: var(--card-muted); text-transform: uppercase; }
+.tcg-name { font: 400 23px/1.1 var(--display); margin: 4px 0 7px; }
+.tcg-art { position: relative; flex: none; height: 150px; border-radius: 4px; overflow: hidden;
+  background: radial-gradient(120% 90% at 80% 10%, rgba(255, 59, 79, .45), transparent 60%), linear-gradient(160deg, #1b2266, #0d1233);
+  box-shadow: 0 0 0 3px #caa64a, 0 0 0 4px rgba(0, 0, 0, .25); }
+.tcg-art svg { display: block; width: 100%; height: 100%; }
+.tcg-caption { font: italic 9.5px var(--body); color: var(--card-muted); text-align: center; margin: 5px 0 6px; }
+.tcg-moves { display: grid; gap: 0; }
+.tcg-move { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 8px; padding: 6px 0; border-top: 1px solid rgba(26, 29, 56, .14); }
+.tcg-move i { width: 13px; height: 13px; border-radius: 50%; box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .2); }
+.tcg-move span { font-size: 12px; font-weight: 700; }
+.tcg-move b { font: 400 14.5px var(--display); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.tcg-flavor { margin: auto 0 0; font: italic 10.5px/1.4 var(--body); color: var(--card-muted); border-top: 1px solid rgba(26, 29, 56, .14); padding-top: 6px; }
+.tcg-foot { display: flex; justify-content: space-between; font: 700 8.5px var(--mono); color: var(--card-muted); margin-top: 5px; letter-spacing: .04em; }
+.tcg-foil { position: absolute; inset: 0; border-radius: 18px; pointer-events: none; mix-blend-mode: color-dodge; opacity: .6;
+  background:
+    linear-gradient(115deg, transparent 18%, rgba(255, 0, 180, .5) 34%, rgba(0, 235, 255, .5) 45%, rgba(255, 245, 0, .5) 56%, rgba(120, 255, 120, .35) 64%, transparent 78%),
+    repeating-linear-gradient(55deg, rgba(255, 255, 255, .08) 0 2px, transparent 2px 7px);
+  background-size: 260% 260%, 100% 100%; background-position: var(--mx, 30%) var(--my, 30%), 0 0; }
+.tcg-glare { position: absolute; inset: 0; border-radius: 18px; pointer-events: none; mix-blend-mode: soft-light;
+  background: radial-gradient(circle at var(--gx, 30%) var(--gy, 20%), rgba(255, 255, 255, .75), transparent 45%); }
+@media (prefers-reduced-motion: no-preference) {
+  .tcg:not(.is-live) .tcg-foil { animation: sheen 7s ease-in-out infinite alternate; }
+}
+@keyframes sheen { from { background-position: 0% 20%, 0 0; } to { background-position: 100% 80%, 0 0; } }
+.hero-art .hint { position: absolute; bottom: 0; font: 700 11.5px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-decoration: none; border-bottom: 1px dashed var(--faint); }
+.hero-art .hint:hover { color: var(--gold); border-color: var(--gold); }
+
+/* panels and data */
 .small { font-size: 14.5px; color: var(--muted); }
 .jpc { color: var(--jp); font-weight: 700; } .usc { color: var(--us); font-weight: 700; } .euc { color: var(--eu); font-weight: 700; }
-.figure { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 22px; margin: 24px 0; }
-.figure h3 { font-size: 19px; }
-.figure .sub { font-size: 14px; color: var(--muted); margin: 4px 0 12px; }
+.panel { background: linear-gradient(180deg, var(--panel-2), var(--panel)); border: 1px solid var(--line); border-radius: 16px; }
+.figure { padding: 22px; margin: 22px 0 0; }
+.figure h3 { font-size: 20px; }
+.figure .sub { font-size: 14px; color: var(--muted); margin: 6px 0 12px; }
 .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 14px; color: var(--muted); }
 .legend i { display: inline-block; width: 20px; height: 4px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
 .svgwrap svg { display: block; width: 100%; height: auto; }
-.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin: 22px 0; }
-.stats div { background: var(--panel); padding: 16px 18px; }
-.stats b { display: block; font: 800 30px/1.05 var(--display); font-variant-numeric: tabular-nums; }
-.stats span { font-size: 14.5px; color: var(--muted); }
-
-.tablewrap { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; margin: 16px 0; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 22px 0; }
+.stats div { padding: 16px 18px; }
+.stats b { display: block; font: 400 32px/1.05 var(--display); font-variant-numeric: tabular-nums; margin-bottom: 6px; }
+.stats b.gold { color: var(--gold); }
+.stats span { font-size: 14.5px; color: var(--muted); display: block; }
+.tablewrap { overflow-x: auto; margin: 16px 0; }
 table { border-collapse: collapse; width: 100%; font-size: 15px; font-variant-numeric: tabular-nums; }
-th { text-align: left; vertical-align: bottom; font: 600 11.5px/1.35 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--faint); padding: 10px 12px; border-bottom: 1px solid var(--line); }
-td { padding: 8px 12px; border-bottom: 1px solid var(--soft); white-space: nowrap; }
-td.card { white-space: normal; }
-td.card .d { display: block; font: 12px var(--mono); color: var(--faint); }
+th { text-align: left; vertical-align: bottom; font: 700 11px/1.35 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--faint); padding: 12px; border-bottom: 1px solid var(--line); }
+td { padding: 9px 12px; border-bottom: 1px solid var(--soft); white-space: nowrap; }
+tbody tr { transition: background-color .15s; }
+tbody tr:hover { background: rgba(255, 255, 255, .035); }
+td.card { white-space: normal; font-weight: 700; }
+td.card .d { display: block; font: 400 12px var(--mono); color: var(--faint); }
 tr:last-child td { border-bottom: 0; }
 td.r, th.r { text-align: right; }
 td.up { color: var(--good); font-weight: 700; } td.down { color: var(--bad); font-weight: 700; }
-.pill { display: inline-block; font: 600 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; background: var(--jp-soft); color: var(--jp); vertical-align: middle; }
+td.big { font-family: var(--display); font-weight: 400; font-size: 17px; }
+.pill { display: inline-block; font: 700 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--jp); color: #fff; vertical-align: middle; }
 
-.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 20px 0; }
-.steps div { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
-.steps b { display: block; font: 700 18px var(--display); margin-bottom: 4px; }
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 22px 0; counter-reset: step; }
+.steps div { padding: 18px 20px; }
+.steps b { display: block; font: 400 19px var(--display); margin-bottom: 6px; }
+.steps b::before { counter-increment: step; content: counter(step); display: inline-grid; place-items: center; width: 26px; height: 26px; margin-right: 10px; border-radius: 50%; background: var(--gold); color: var(--on-gold); font: 400 14px var(--display); vertical-align: 2px; }
 .steps span { font-size: 15.5px; color: var(--muted); }
 
 /* waitlist: the plan cards are the plan choice */
-form { margin-top: 20px; }
+form { margin-top: 22px; }
 fieldset { border: 0; padding: 0; margin: 0 0 18px; min-width: 0; }
 legend, label.field { font-weight: 700; display: block; margin-bottom: 8px; padding: 0; }
-.plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
-.plan { position: relative; display: block; background: var(--panel); border: 2px solid var(--line); border-radius: 14px; padding: 18px 20px 20px; cursor: pointer; transition: border-color .15s; }
-.plan:hover { border-color: var(--faint); }
-.plan:has(input:checked) { border-color: var(--jp); }
-.plan:has(input:focus-visible) { outline: 3px solid var(--us); outline-offset: 2px; }
-.plan input { position: absolute; top: 20px; right: 20px; width: 20px; height: 20px; margin: 0; accent-color: var(--jp); }
-.plan .name { display: block; font: 800 20px var(--display); padding-right: 30px; }
-.plan .price { display: block; font: 800 30px var(--display); margin: 6px 0 8px; }
+.plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.plan { position: relative; display: block; border: 2px solid var(--line); border-radius: 16px; padding: 20px 22px 22px; cursor: pointer; overflow: hidden; background: linear-gradient(180deg, var(--panel-2), var(--panel)); transition: border-color .15s, transform .15s, box-shadow .15s; }
+.plan:hover { border-color: var(--faint); transform: translateY(-2px); }
+.plan:has(input:checked) { border-color: var(--gold); box-shadow: 0 0 0 4px rgba(255, 210, 63, .15), 0 16px 40px rgba(0, 0, 0, .35); }
+.plan:has(input:focus-visible) { outline: 3px solid var(--gold); outline-offset: 3px; }
+.plan.paid::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .18; mix-blend-mode: screen;
+  background: linear-gradient(115deg, transparent 20%, #ff00b4 38%, #00ebff 50%, #fff500 62%, transparent 80%); }
+.plan input { position: absolute; top: 22px; right: 22px; width: 20px; height: 20px; margin: 0; accent-color: var(--gold); }
+.plan .name { display: block; font: 400 22px var(--display); padding-right: 30px; }
+.plan .price { display: block; font: 400 34px var(--display); margin: 6px 0 10px; color: var(--gold); }
 .plan .price small { font: 400 15px var(--body); color: var(--muted); }
-.plan .item { display: block; font-size: 15.5px; padding-left: 18px; position: relative; }
-.plan .item::before { content: ""; position: absolute; left: 3px; top: .62em; width: 6px; height: 6px; border-radius: 50%; background: var(--faint); }
-.fields { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 22px; max-width: 640px; }
-input[type=email] { width: 100%; font: 16px var(--body); padding: 11px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); }
+.plan .item { display: block; font-size: 15.5px; padding-left: 20px; position: relative; color: var(--ink); }
+.plan .item::before { content: ""; position: absolute; left: 3px; top: .6em; width: 7px; height: 7px; border-radius: 50%; background: var(--jp); }
+.fields { padding: 22px; max-width: 660px; }
+input[type=email] { width: 100%; font: 16px var(--body); padding: 12px 13px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--ink); }
+input[type=email]::placeholder { color: var(--faint); }
 input[type=email]:hover { border-color: var(--faint); }
 .optional { font-weight: 400; color: var(--faint); font-size: 14px; }
 .choices { display: flex; flex-wrap: wrap; gap: 8px; }
-.choices label { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; cursor: pointer; font-size: 15.5px; transition: border-color .15s; }
+.choices label { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; cursor: pointer; font-size: 15.5px; background: var(--bg); transition: border-color .15s, background-color .15s; }
 .choices label:hover { border-color: var(--faint); }
-.choices label:has(input:checked) { border-color: var(--jp); background: var(--jp-soft); }
-.choices input, .consent input { accent-color: var(--jp); margin: 0; }
-.consent { display: flex; gap: 10px; align-items: flex-start; font-size: 14.5px; color: var(--muted); margin: 6px 0 16px; cursor: pointer; }
+.choices label:has(input:checked) { border-color: var(--gold); background: rgba(255, 210, 63, .1); }
+.choices input, .consent input { accent-color: var(--gold); margin: 0; }
+.consent { display: flex; gap: 10px; align-items: flex-start; font-size: 14.5px; color: var(--muted); margin: 6px 0 18px; cursor: pointer; }
 .consent input { margin-top: 4px; flex: none; }
-button { font: 700 17px var(--body); background: var(--jp); color: var(--on-jp); border: 0; padding: 13px 22px; border-radius: 10px; cursor: pointer; transition: background-color .15s; }
+button { font: 400 17px var(--display); background: linear-gradient(180deg, var(--gold), var(--gold-2)); color: var(--on-gold); border: 0; padding: 15px 24px; border-radius: 12px; cursor: pointer; box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset; transition: transform .15s, filter .15s; }
+button:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.06); }
 button:disabled { opacity: .6; cursor: default; }
 .msg { margin-top: 12px; font-weight: 700; }
 .msg:empty { display: none; }
 .msg.ok { color: var(--good); } .msg.err { color: var(--bad); }
 
-details { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; margin: 10px 0; max-width: 72ch; }
+details { padding: 14px 18px; margin: 10px 0; max-width: 72ch; }
 summary { font-weight: 700; cursor: pointer; }
-summary:hover { color: var(--jp); }
-footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13.5px; color: var(--faint); max-width: 80ch; }
+summary:hover { color: var(--gold); }
+details p { color: var(--muted); }
+footer { margin-top: 72px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 13.5px; color: var(--faint); max-width: 82ch; }
 footer p { margin: 0 0 8px; }
 
-@media (max-width: 760px) {
-  .hero { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+@media (max-width: 820px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 10px; min-height: 0; }
+  .hero-art { min-height: 520px; }
+  .ring { width: min(520px, 100%); transform: translate(-50%, -54%); }
+  .sun { transform: translate(-50%, -54%); width: min(470px, 96%); }
 }
 @media (max-width: 520px) {
   .wrap { padding: 20px 16px 64px; }
-  .brand { margin-bottom: 26px; }
+  .brand { margin-bottom: 24px; }
   .lede { font-size: 18px; }
+  .hero-art { min-height: 500px; }
+  .tcg { width: min(300px, 100%); }
+  .tcg-name { font-size: 21px; }
+  .tcg-art { height: 112px; }
+  .tcg-caption { display: none; }
+  .tcg-art { margin-bottom: 8px; }
+  .tcg-move span { font-size: 11px; }
+  .tcg-move b { font-size: 13.5px; }
+  .tcg-flavor { font-size: 10px; }
+  .section { margin-top: 60px; }
   .figure { padding: 16px; }
+  .stats { gap: 10px; }
   .stats b { font-size: 26px; }
   .stats div { padding: 14px; }
   table { font-size: 14px; }
-  th { font-size: 10.5px; letter-spacing: .04em; padding: 8px; }
+  th { font-size: 10px; letter-spacing: .05em; padding: 10px 8px; }
   td { padding: 8px; }
   .fields { padding: 18px 16px; }
 }
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 </head>
 <body>
 <a class="skip" href="#join">Skip to the waitlist</a>
 <div class="wrap">
-  <div class="brand"><b translate="no">Early<span>Mon</span></b><a class="cta-small" href="#join">Join the waitlist</a></div>
+  <div class="brand"><a class="logo" href="#" translate="no"><i aria-hidden="true"></i><span>Early<em>Mon</em></span></a><a class="cta-small" href="#join">Join the waitlist</a></div>
 
   <header class="hero">
     <div>
+      <div class="hero-kicker"><b>City League</b>Japan's tournaments, read every weekend</div>
       <h1>Pokémon cards rising in <em>Japan</em>, before the English price moves</h1>
       <p class="lede">Japan plays every Pokémon card set 3 to 4 months before the English release. We read Japan's tournament results every week and flag the cards that are starting to win there while they are still cheap on TCGplayer and Cardmarket.</p>
-      <a class="cta" href="#join">Get the weekly list</a>
-      <p class="cta-note">Free weekly email, or $5/month early access at launch. No payment now.</p>
+      <div class="cta-row">
+        <a class="cta" href="#join">Get the weekly list</a>
+        <p class="cta-note">Free weekly email, or $5/month early access at launch. No payment now.</p>
+      </div>
     </div>
-    <aside class="receipt" aria-label="A past signal: Unfair Stamp"><div class="receipt-head"><span class="pill">past signal</span><span class="set">TWM 165</span></div><b class="receipt-name" translate="no">Unfair Stamp</b><dl><div><dt>Japan’s winning decks</dt><dd class="jpc">3% → 18%</dd></div><div><dt>US, TCGplayer</dt><dd class="usc">$1.20 → $15.23</dd></div><div><dt>Europe, Cardmarket</dt><dd class="euc">€1.31 → €10.43</dd></div></dl><p>Japan signal in the week of 26 Jan 2026. US price 9 weeks later; Europe by the week of 27 Apr 2026. <a href="#record">See all 15 past signals, misses included</a>.</p></aside>
+    <div class="hero-art">
+      <div class="ring" aria-hidden="true"></div>
+      <div class="sun" aria-hidden="true"></div>
+      <div class="tcg" role="img" aria-label="A past signal drawn as a trading card: Unfair Stamp, Japan share 3% to 18%, US price $1.20 to $15.23, +1155% versus the market after 60 days"><div class="tcg-face"><div class="tcg-top"><span class="tcg-stage">Past signal</span><span class="tcg-hp"><small>60 d vs mkt</small>+1155%</span></div><div class="tcg-name" translate="no">Unfair Stamp</div><div class="tcg-art"><svg id="tcg-art" viewBox="0 0 300 118" preserveAspectRatio="none" aria-hidden="true"></svg></div><div class="tcg-caption">Red: Japan&#39;s winning decks. Gold: US price. Nov 2025 to today.</div><div class="tcg-moves"><div class="tcg-move"><i style="background:var(--card-jp)"></i><span>Japan&#39;s winning decks</span><b style="color:var(--card-jp)">3% → 18%</b></div><div class="tcg-move"><i style="background:var(--card-us)"></i><span>TCGplayer, US</span><b style="color:var(--card-us)">$1.20 → $15.23</b></div><div class="tcg-move"><i style="background:var(--card-eu)"></i><span>Cardmarket, EU</span><b style="color:var(--card-eu)">€1.31 → €10.43</b></div></div><p class="tcg-flavor">Japan started winning with it in the week of 26 Jan 2026. The US price followed 9 weeks later; Europe by 27 Apr 2026.</p><div class="tcg-foot"><span>TWM 165</span><span>EarlyMon · 1 of 15</span></div></div><div class="tcg-foil" aria-hidden="true"></div><div class="tcg-glare" aria-hidden="true"></div></div><a class="hint" href="#record">See all 15 past signals, misses included</a>
+    </div>
   </header>
 
-  <h2>One card, three prices</h2>
-  <div class="figure">
-    <h3 translate="no">Unfair Stamp</h3>
-    <div class="sub">Weekly, real data. Red area: share of Japan's City League winning decks that played it. Lines: its English price in the US and in Europe.</div>
-    <div class="legend">
-      <span><i style="background:var(--jp);opacity:.55;height:12px"></i>Japan: share of winning decks (left)</span>
-      <span><i style="background:var(--us)"></i>US, TCGplayer, $ (right)</span>
-      <span><i style="background:var(--eu)"></i>Europe, Cardmarket, € (right)</span>
-    </div>
-    <div class="svgwrap"><svg id="stamp" viewBox="0 0 920 360" role="img" aria-label="Unfair Stamp: Japanese play share rises in January 2026, US price jumps in February, European price follows in March"></svg></div>
-    <p class="small">Week of 26 Jan 2026: Japan goes from 3% to 18% of winning decks while it costs <span class="usc">$1.20</span> in the US. Week of 30 Mar 2026: <span class="usc">$15.23</span>. Europe follows later (<span class="euc">€1.31 → €10.43</span> by the week of 27 Apr 2026). Latest: <span class="usc">$15.59</span> / <span class="euc">€9.38</span>.</p>
-  </div>
-
-  <h2 id="record">Our record on past seasons</h2>
-  <div class="prose"><p>We replayed Japan's results from 2024 to May 2026 with rules fixed in advance: each time an older card suddenly rose in Japan's winning decks because of new Japanese cards, what did its English price do over the next 60 days, compared with the whole card market?</p></div>
-  <div class="stats">
-    <div><b>15</b><span>calls since 2024 (cards worth $0.75 or more)</span></div>
-    <div><b>12 of 15</b><span>beat the card market 60 days later</span></div>
-    <div><b class="usc">+43%</b><span>typical gain in the US at 60 days, on top of the market</span></div>
-    <div><b class="euc">+36%</b><span>typical gain in Europe at 90 days: Europe reacts later</span></div>
-  </div>
-  <div class="tablewrap"><table>
-    <thead><tr><th>Card, date of Japan signal</th><th>Share of Japan's winning decks</th><th class="r">US price then</th><th class="r">60 days later, vs market</th></tr></thead>
-    <tbody id="calls"></tbody>
-  </table></div>
-  <p class="small">Every row, including the misses. “vs market” is the card's price change minus the median change of all tracked cards over the same days. Past results do not guarantee future ones.</p>
-
-  <h2>This weekend in Japan <span class="pill">new season</span></h2>
-  <div class="prose"><p>Japan's new City League season started on 26–28 Sep 2026: 62 tournaments, 62 winning decks. These English cards appear far more often than at the end of last season. One weekend is a signal to watch, not a call yet; we confirm or drop them over the next weeks.</p></div>
-  <div class="tablewrap"><table>
-    <thead><tr><th>Card</th><th>Share of winning decks, last season → this weekend</th><th class="r">US</th><th class="r">Europe</th></tr></thead>
-    <tbody id="watch"></tbody>
-  </table></div>
-
-  <h2>How it works</h2>
-  <div class="steps">
-    <div><b>We read Japan</b><span>Every City League result and winning decklist, every week: 40 to 100 tournaments a weekend in season.</span></div>
-    <div><b>We spot the risers</b><span>Cards whose share of winning decks jumps, especially older cards made strong by Japanese cards not yet out in English.</span></div>
-    <div><b>You get the list</b><span>Card, why it is rising, and today's price on TCGplayer and Cardmarket, before English players catch on.</span></div>
-  </div>
-
-  <h2 id="join">Join the waitlist</h2>
-  <form id="waitlist" novalidate><input type="hidden" name="access_key" value="1ff23075-a99e-469b-a9a4-4619c6061900"><input type="hidden" name="subject" value="New waitlist sign-up"><input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
-    <fieldset>
-      <legend>Pick one. No payment is taken now.</legend>
-      <div class="plans">
-        <label class="plan" for="plan-free"><input type="radio" name="plan" value="free" id="plan-free">
-          <span class="name">Free</span><span class="price">$0</span>
-          <span class="item">A weekly email with two or three picks</span><span class="item">The season's biggest movers</span></label>
-        <label class="plan" for="plan-paid"><input type="radio" name="plan" value="paid-5-month" id="plan-paid">
-          <span class="name">Early access</span><span class="price">$5 <small>/ month at launch</small></span>
-          <span class="item">The full weekly list</span><span class="item">Alerts as soon as the weekend's Japanese results are in</span><span class="item">US and European prices for every pick</span></label>
+  <section class="section">
+    <div class="kicker"><span class="ja" lang="ja" aria-hidden="true">実例</span>Case study</div>
+    <h2>One card, three prices</h2>
+    <div class="figure panel">
+      <h3 translate="no">Unfair Stamp</h3>
+      <div class="sub">Weekly, real data. Red area: share of Japan's City League winning decks that played it. Lines: its English price in the US and in Europe.</div>
+      <div class="legend">
+        <span><i style="background:var(--jp);opacity:.6;height:12px"></i>Japan: share of winning decks (left)</span>
+        <span><i style="background:var(--us)"></i>US, TCGplayer, $ (right)</span>
+        <span><i style="background:var(--eu)"></i>Europe, Cardmarket, € (right)</span>
       </div>
-    </fieldset>
-    <div class="fields">
-      <fieldset>
-        <label class="field" for="email">Email</label>
-        <input type="email" id="email" name="email" required autocomplete="email" spellcheck="false" placeholder="you@example.com">
-      </fieldset>
-      <fieldset>
-        <legend>Where do you buy cards? <span class="optional">(optional)</span></legend>
-        <div class="choices">
-          <label><input type="radio" name="region" value="us" id="region-us"> US (TCGplayer)</label>
-          <label><input type="radio" name="region" value="eu" id="region-eu"> Europe (Cardmarket)</label>
-          <label><input type="radio" name="region" value="other" id="region-other"> Elsewhere</label>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>You mostly… <span class="optional">(optional)</span></legend>
-        <div class="choices">
-          <label><input type="radio" name="profile" value="player" id="profile-player"> play tournaments</label>
-          <label><input type="radio" name="profile" value="reseller" id="profile-reseller"> buy and resell</label>
-          <label><input type="radio" name="profile" value="collector" id="profile-collector"> collect</label>
-        </div>
-      </fieldset>
-      <label class="consent"><input type="checkbox" id="consent" name="consent" required> Email me about EarlyMon's launch and the weekly list. No payment is taken now. You can ask to be removed at any time by replying to any email.</label>
-      <button type="submit" id="submit">Join the waitlist</button>
-      <div class="msg" id="msg" role="status" aria-live="polite"></div>
+      <div class="svgwrap"><svg id="stamp" viewBox="0 0 920 360" role="img" aria-label="Unfair Stamp: Japanese play share rises in January 2026, US price jumps in February, European price follows in March"></svg></div>
+      <p class="small">Week of 26 Jan 2026: Japan goes from 3% to 18% of winning decks while it costs <span class="usc">$1.20</span> in the US. Week of 30 Mar 2026: <span class="usc">$15.23</span>. Europe follows later (<span class="euc">€1.31 → €10.43</span> by the week of 27 Apr 2026). Latest: <span class="usc">$15.59</span> / <span class="euc">€9.38</span>.</p>
     </div>
-  </form>
+  </section>
 
-  <h2>Questions</h2>
-  <details><summary>Is this financial advice?</summary><p>No. It is information about which cards are being played in Japan and their public prices. Card prices can fall as well as rise.</p></details>
-  <details><summary>Why Japan?</summary><p>Japan releases each set 3 to 4 months earlier and publishes its City League decklists. Decks that win there tend to be copied in English once the cards arrive.</p></details>
-  <details><summary>When does the paid list start?</summary><p>Now that Japan's new season has started, the first confirmed picks follow once a rise holds for more than one weekend. Waitlist members hear first. You pay nothing until you choose to subscribe at launch.</p></details>
-  <details><summary>Where do the prices come from?</summary><p>Public market prices from TCGplayer (US) and Cardmarket (Europe), via Limitless TCG.</p></details>
+  <section class="section">
+    <div class="kicker"><span class="ja" lang="ja" aria-hidden="true">過去の実績</span>Track record</div>
+    <h2 id="record">Our record on past seasons</h2>
+    <div class="prose"><p>We replayed Japan's results from 2024 to May 2026 with rules fixed in advance: each time an older card suddenly rose in Japan's winning decks because of new Japanese cards, what did its English price do over the next 60 days, compared with the whole card market?</p></div>
+    <div class="stats">
+      <div class="panel"><b class="gold">15</b><span>calls since 2024 (cards worth $0.75 or more)</span></div>
+      <div class="panel"><b>12 of 15</b><span>beat the card market 60 days later</span></div>
+      <div class="panel"><b class="usc">+43%</b><span>typical gain in the US at 60 days, on top of the market</span></div>
+      <div class="panel"><b class="euc">+36%</b><span>typical gain in Europe at 90 days: Europe reacts later</span></div>
+    </div>
+    <div class="tablewrap panel"><table>
+      <thead><tr><th>Card, date of Japan signal</th><th>Share of Japan's winning decks</th><th class="r">US price then</th><th class="r">60 days later, vs market</th></tr></thead>
+      <tbody id="calls"></tbody>
+    </table></div>
+    <p class="small">Every row, including the misses. “vs market” is the card's price change minus the median change of all tracked cards over the same days. Past results do not guarantee future ones.</p>
+  </section>
+
+  <section class="section">
+    <div class="kicker"><span class="ja" lang="ja" aria-hidden="true">今週末のシティリーグ</span>Live signals</div>
+    <h2>This weekend in Japan <span class="pill">new season</span></h2>
+    <div class="prose"><p>Japan's new City League season started on 26–28 Sep 2026: 62 tournaments, 62 winning decks. These English cards appear far more often than at the end of last season. One weekend is a signal to watch, not a call yet; we confirm or drop them over the next weeks.</p></div>
+    <div class="tablewrap panel"><table>
+      <thead><tr><th>Card</th><th>Share of winning decks, last season → this weekend</th><th class="r">US</th><th class="r">Europe</th></tr></thead>
+      <tbody id="watch"></tbody>
+    </table></div>
+  </section>
+
+  <section class="section">
+    <div class="kicker"><span class="ja" lang="ja" aria-hidden="true">しくみ</span>Method</div>
+    <h2>How it works</h2>
+    <div class="steps">
+      <div class="panel"><b>We read Japan</b><span>Every City League result and winning decklist, every week: 40 to 100 tournaments a weekend in season.</span></div>
+      <div class="panel"><b>We spot the risers</b><span>Cards whose share of winning decks jumps, especially older cards made strong by Japanese cards not yet out in English.</span></div>
+      <div class="panel"><b>You get the list</b><span>Card, why it is rising, and today's price on TCGplayer and Cardmarket, before English players catch on.</span></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="kicker"><span class="ja" lang="ja" aria-hidden="true">先行登録</span>Waitlist</div>
+    <h2 id="join">Join the waitlist</h2>
+    <form id="waitlist" novalidate><input type="hidden" name="access_key" value="1ff23075-a99e-469b-a9a4-4619c6061900"><input type="hidden" name="subject" value="New waitlist sign-up"><input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+      <fieldset>
+        <legend>Pick one. No payment is taken now.</legend>
+        <div class="plans">
+          <label class="plan" for="plan-free"><input type="radio" name="plan" value="free" id="plan-free">
+            <span class="name">Free</span><span class="price">$0</span>
+            <span class="item">A weekly email with two or three picks</span><span class="item">The season's biggest movers</span></label>
+          <label class="plan paid" for="plan-paid"><input type="radio" name="plan" value="paid-5-month" id="plan-paid">
+            <span class="name">Early access</span><span class="price">$5 <small>/ month at launch</small></span>
+            <span class="item">The full weekly list</span><span class="item">Alerts as soon as the weekend's Japanese results are in</span><span class="item">US and European prices for every pick</span></label>
+        </div>
+      </fieldset>
+      <div class="fields panel">
+        <fieldset>
+          <label class="field" for="email">Email</label>
+          <input type="email" id="email" name="email" required autocomplete="email" spellcheck="false" placeholder="you@example.com">
+        </fieldset>
+        <fieldset>
+          <legend>Where do you buy cards? <span class="optional">(optional)</span></legend>
+          <div class="choices">
+            <label><input type="radio" name="region" value="us" id="region-us"> US (TCGplayer)</label>
+            <label><input type="radio" name="region" value="eu" id="region-eu"> Europe (Cardmarket)</label>
+            <label><input type="radio" name="region" value="other" id="region-other"> Elsewhere</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>You mostly… <span class="optional">(optional)</span></legend>
+          <div class="choices">
+            <label><input type="radio" name="profile" value="player" id="profile-player"> play tournaments</label>
+            <label><input type="radio" name="profile" value="reseller" id="profile-reseller"> buy and resell</label>
+            <label><input type="radio" name="profile" value="collector" id="profile-collector"> collect</label>
+          </div>
+        </fieldset>
+        <label class="consent"><input type="checkbox" id="consent" name="consent" required> Email me about EarlyMon's launch and the weekly list. No payment is taken now. You can ask to be removed at any time by replying to any email.</label>
+        <button type="submit" id="submit">Join the waitlist</button>
+        <div class="msg" id="msg" role="status" aria-live="polite"></div>
+      </div>
+    </form>
+  </section>
+
+  <section class="section">
+    <div class="kicker"><span class="ja" lang="ja" aria-hidden="true">よくある質問</span>FAQ</div>
+    <h2>Questions</h2>
+    <details class="panel"><summary>Is this financial advice?</summary><p>No. It is information about which cards are being played in Japan and their public prices. Card prices can fall as well as rise.</p></details>
+    <details class="panel"><summary>Why Japan?</summary><p>Japan releases each set 3 to 4 months earlier and publishes its City League decklists. Decks that win there tend to be copied in English once the cards arrive.</p></details>
+    <details class="panel"><summary>When does the paid list start?</summary><p>Now that Japan's new season has started, the first confirmed picks follow once a rise holds for more than one weekend. Waitlist members hear first. You pay nothing until you choose to subscribe at launch.</p></details>
+    <details class="panel"><summary>Where do the prices come from?</summary><p>Public market prices from TCGplayer (US) and Cardmarket (Europe), via Limitless TCG.</p></details>
+  </section>
 
   <footer>
     <p>EarlyMon is not affiliated with, endorsed by or sponsored by The Pokémon Company, Nintendo, Game Freak, Creatures, TCGplayer or Cardmarket. Pokémon and card names are trademarks of their owners.</p>
@@ -277,12 +376,50 @@ footer p { margin: 0 0 8px; }
 const DATA = {"calls":[{"day":"2024-03-17","name":"Pidgeot ex","prior":9,"share":20,"price":7.86,"ret":30},{"day":"2024-12-15","name":"Latias ex","prior":3,"share":16,"price":2.39,"ret":49},{"day":"2024-12-29","name":"Radiant Alakazam","prior":8,"share":18,"price":0.94,"ret":54},{"day":"2024-12-29","name":"Sparkling Crystal","prior":6,"share":17,"price":0.84,"ret":67},{"day":"2025-02-16","name":"Mew ex","prior":8,"share":19,"price":7.62,"ret":-2},{"day":"2025-02-23","name":"Wellspring Mask Ogerpon ex","prior":2,"share":16,"price":1.11,"ret":47},{"day":"2025-03-02","name":"Bloodmoon Ursaluna ex","prior":7,"share":31,"price":1.36,"ret":62},{"day":"2025-03-02","name":"Terapagos ex","prior":4,"share":18,"price":2.97,"ret":40},{"day":"2025-03-02","name":"Pikachu ex","prior":1,"share":19,"price":7.61,"ret":11},{"day":"2025-12-28","name":"Dragapult ex","prior":9,"share":19,"price":0.95,"ret":43},{"day":"2025-12-28","name":"Hilda","prior":8,"share":21,"price":1.7,"ret":-14},{"day":"2026-02-01","name":"Unfair Stamp","prior":3,"share":18,"price":1.2,"ret":1155},{"day":"2026-02-01","name":"Fezandipiti ex","prior":0,"share":18,"price":3.31,"ret":25},{"day":"2026-03-08","name":"Teal Mask Ogerpon ex","prior":9,"share":24,"price":2.28,"ret":71},{"day":"2026-04-12","name":"Poké Pad","prior":0,"share":79,"price":0.75,"ret":-61}],"watch":[{"name":"Judge","old":19,"now":45,"usd":0.15,"eur":0.07,"rise":0.26318006740491096},{"name":"Secret Box","old":3,"now":18,"usd":5.55,"eur":8.38,"rise":0.14943428021184402},{"name":"Dunsparce","old":14,"now":27,"usd":5.76,"eur":6.75,"rise":0.1342681752527684},{"name":"Dudunsparce","old":14,"now":27,"usd":1.86,"eur":1.6,"rise":0.1342681752527684},{"name":"Gravity Mountain","old":6,"now":19,"usd":0.16,"eur":0.08,"rise":0.13384689455946075},{"name":"Buddy-Buddy Poffin","old":62,"now":73,"usd":0.92,"eur":0.64,"rise":0.11013480982185853},{"name":"Dudunsparce ex","old":9,"now":19,"usd":0.77,"eur":0.8,"rise":0.10772749157438613},{"name":"Shaymin","old":23,"now":34,"usd":0.25,"eur":0.14,"rise":0.10736639383726526},{"name":"Air Balloon","old":15,"now":26,"usd":0.26,"eur":0.26,"rise":0.10321376986037553},{"name":"Switch","old":13,"now":23,"usd":0.16,"eur":0.09,"rise":0.0952094366875301}],"chart":{"start":"2025-11-03","end":"2026-09-29","share":[["2025-11-03",0.031],["2025-11-10",0.027],["2025-11-17",0.0],["2025-11-24",0.012],["2025-12-01",0.0],["2025-12-08",0.0],["2025-12-15",0.0],["2025-12-22",0.018],["2025-12-29",0.026],["2026-01-05",0.05],["2026-01-12",0.016],["2026-01-19",0.145],["2026-01-26",0.209],["2026-02-02",0.457],["2026-02-09",0.49],["2026-02-23",0.537],["2026-03-02",0.675],["2026-03-09",0.545],["2026-03-16",0.453],["2026-03-23",0.643],["2026-03-30",0.574],["2026-04-06",0.568],["2026-04-13",0.627],["2026-04-20",0.643],["2026-04-27",0.553],["2026-05-04",0.725],["2026-09-21",0.407]],"us":[["2025-11-03",1.17],["2025-11-10",0.89],["2025-11-17",0.98],["2025-11-24",0.79],["2025-12-01",0.89],["2025-12-08",0.84],["2025-12-15",0.85],["2025-12-22",0.8],["2025-12-29",0.83],["2026-01-05",0.86],["2026-01-12",0.86],["2026-01-19",1.12],["2026-01-26",1.17],["2026-02-02",1.62],["2026-02-09",2.21],["2026-02-16",2.05],["2026-02-23",11.37],["2026-03-02",9.82],["2026-03-09",9.94],["2026-03-16",9.96],["2026-03-23",12.24],["2026-03-30",15.23],["2026-04-06",17.66],["2026-04-13",16.58],["2026-04-20",18.18],["2026-04-27",18.83],["2026-05-04",16.38],["2026-05-11",15.33],["2026-05-18",15.0],["2026-05-25",15.23],["2026-06-01",15.62],["2026-06-08",16.09],["2026-06-15",15.93],["2026-06-22",15.02],["2026-06-29",13.87],["2026-07-06",12.57],["2026-07-13",12.41],["2026-07-20",12.34],["2026-07-27",12.46],["2026-08-03",12.79],["2026-08-10",12.52],["2026-08-17",13.17],["2026-08-24",13.28],["2026-08-31",14.48],["2026-09-07",14.7],["2026-09-14",16.11],["2026-09-21",14.49],["2026-09-28",15.59]],"eu":[["2025-11-03",1.27],["2025-11-10",1.19],["2025-11-17",1.08],["2025-11-24",1.05],["2025-12-01",1.17],["2025-12-08",1.29],["2025-12-15",1.24],["2025-12-22",1.33],["2025-12-29",1.27],["2026-01-05",1.25],["2026-01-12",1.29],["2026-01-19",1.4],["2026-01-26",1.31],["2026-02-02",1.22],["2026-02-09",1.27],["2026-02-16",1.35],["2026-02-23",2.04],["2026-03-02",4.33],["2026-03-09",7.57],["2026-03-16",8.73],["2026-03-23",7.86],["2026-03-30",7.6],["2026-04-06",8.25],["2026-04-13",9.67],["2026-04-20",10.2],["2026-04-27",10.43],["2026-05-04",10.25],["2026-05-11",9.52],["2026-05-18",9.33],["2026-05-25",9.78],["2026-06-01",10.41],["2026-06-08",10.7],["2026-06-15",10.05],["2026-06-22",10.11],["2026-06-29",10.1],["2026-07-06",9.53],["2026-07-13",9.12],["2026-07-20",9.03],["2026-07-27",8.87],["2026-08-03",8.75],["2026-08-10",8.88],["2026-08-17",9.32],["2026-08-24",10.35],["2026-08-31",10.07],["2026-09-07",9.73],["2026-09-14",9.53],["2026-09-21",9.55],["2026-09-28",9.38]],"gap":["2026-05-04","2026-09-21"],"months":["2026-01-01","2026-03-01","2026-05-01","2026-07-01","2026-09-01"]}};
 const FORM_ENDPOINT = "https://api.web3forms.com/submit";
 const $ = s => document.querySelector(s);
+const NS = "http://www.w3.org/2000/svg";
 const fmtDate = d => new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric" }).format(new Date(d));
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+const mk = (svg, tag, a) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); svg.appendChild(e); return e; };
+const seasons = share => share.reduce((segs, p, i, a) => {   // one area per season: no line across weeks with no Japanese results
+  if (i && new Date(p[0]) - new Date(a[i - 1][0]) > 28 * 864e5) segs.push([]);
+  segs.at(-1).push(p); return segs;
+}, [[]]);
+
+// the card's "artwork": Japanese share (area) and the US price (line), same data as the big chart
+(function () {
+  const svg = $("#tcg-art"); if (!svg) return;
+  const W = 300, H = 118, P = 6;
+  const t0 = new Date(DATA.chart.start), t1 = new Date(DATA.chart.end);
+  const X = d => P + (new Date(d) - t0) / (t1 - t0) * (W - 2 * P);
+  const YS = v => H - P - v / 0.8 * (H - 2 * P), YP = v => H - P - v / 20 * (H - 2 * P);
+  for (let y = 0; y <= 4; y++) mk(svg, "line", { x1: 0, x2: W, y1: P + y * (H - 2 * P) / 4, y2: P + y * (H - 2 * P) / 4, stroke: "rgba(255,255,255,.07)" });
+  seasons(DATA.chart.share).forEach(seg => {
+    const pts = seg.map(([d, v]) => `${X(d)},${YS(v)}`);
+    mk(svg, "path", { d: `M${X(seg[0][0])},${H - P} L${pts.join(" L")} L${X(seg.at(-1)[0])},${H - P} Z`, fill: "#ff4d5e", opacity: .45 });
+  });
+  mk(svg, "path", { d: "M" + DATA.chart.us.map(([d, v]) => `${X(d)},${YP(v)}`).join(" L"), fill: "none", stroke: "#ffd23f", "stroke-width": 2.4, "stroke-linejoin": "round" });
+  const last = DATA.chart.us.at(-1);
+  mk(svg, "circle", { cx: X(last[0]), cy: YP(last[1]), r: 3.5, fill: "#ffd23f" });
+})();
+
+// holo tilt: follows the pointer, eases back when it leaves
+(function () {
+  const card = $(".tcg"); if (!card || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const set = (x, y) => {
+    card.style.setProperty("--ry", `${(x - .5) * 18}deg`); card.style.setProperty("--rx", `${(.5 - y) * 14}deg`);
+    card.style.setProperty("--mx", `${x * 100}%`); card.style.setProperty("--my", `${y * 100}%`);
+    card.style.setProperty("--gx", `${x * 100}%`); card.style.setProperty("--gy", `${y * 100}%`);
+  };
+  card.addEventListener("pointermove", e => {
+    const r = card.getBoundingClientRect(); card.classList.add("is-live");
+    set((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height);
+  });
+  card.addEventListener("pointerleave", () => { card.classList.remove("is-live"); ["--rx", "--ry", "--mx", "--my", "--gx", "--gy"].forEach(p => card.style.removeProperty(p)); });
+})();
 
 // chart: a narrower drawing on phones so its labels stay readable
 (function () {
-  const svg = $("#stamp"), ns = "http://www.w3.org/2000/svg";
+  const svg = $("#stamp");
   const narrow = svg.parentNode.clientWidth < 600;
   const W = narrow ? 560 : 920, H = narrow ? 380 : 360, L = narrow ? 50 : 58, R = narrow ? 40 : 58, T = 22, B = 42, FS = narrow ? 16 : 12;
   svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
@@ -290,7 +427,7 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;",
   const X = d => L + (new Date(d) - t0) / (t1 - t0) * (W - L - R);
   const YS = v => T + (1 - v / 0.8) * (H - T - B);
   const YP = v => T + (1 - v / 20) * (H - T - B);
-  const el = (tag, a) => { const e = document.createElementNS(ns, tag); for (const k in a) e.setAttribute(k, a[k]); svg.appendChild(e); return e; };
+  const el = (tag, a) => mk(svg, tag, a);
   const text = (x, y, s, a = {}) => { const e = el("text", { x, y, "font-size": FS, "font-family": "JetBrains Mono, monospace", fill: "var(--muted)", ...a }); e.textContent = s; return e; };
   [0, 5, 10, 15, 20].forEach(v => {
     el("line", { x1: L, x2: W - R, y1: YP(v), y2: YP(v), stroke: "var(--line)" });
@@ -300,18 +437,12 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;",
   const monthFmt = new Intl.DateTimeFormat("en-GB", { month: "short", year: "2-digit" });
   DATA.chart.months.forEach(d => text(X(d), H - B + 22, monthFmt.format(new Date(d)), { "text-anchor": "middle" }));
   if (DATA.chart.gap) {
-    el("rect", { x: X(DATA.chart.gap[0]), y: T, width: X(DATA.chart.gap[1]) - X(DATA.chart.gap[0]), height: H - T - B, fill: "var(--soft)", opacity: 0.7 });
+    el("rect", { x: X(DATA.chart.gap[0]), y: T, width: X(DATA.chart.gap[1]) - X(DATA.chart.gap[0]), height: H - T - B, fill: "var(--soft)", opacity: 0.8 });
     text((X(DATA.chart.gap[0]) + X(DATA.chart.gap[1])) / 2, T + 18, "Japan's off-season", { "text-anchor": "middle", "font-size": FS - 1 });
   }
-  // one area per season: no line across weeks with no Japanese results
-  const segs = [[]];
-  DATA.chart.share.forEach((p, i, a) => {
-    if (i && new Date(p[0]) - new Date(a[i - 1][0]) > 28 * 864e5) segs.push([]);
-    segs.at(-1).push(p);
-  });
-  segs.forEach(seg => {
+  seasons(DATA.chart.share).forEach(seg => {
     const sh = seg.map(([d, v]) => `${X(d)},${YS(v)}`);
-    el("path", { d: `M${X(seg[0][0])},${YS(0)} L${sh.join(" L")} L${X(seg.at(-1)[0])},${YS(0)} Z`, fill: "var(--jp)", opacity: 0.22 });
+    el("path", { d: `M${X(seg[0][0])},${YS(0)} L${sh.join(" L")} L${X(seg.at(-1)[0])},${YS(0)} Z`, fill: "var(--jp)", opacity: 0.25 });
     el("path", { d: "M" + sh.join(" L"), fill: "none", stroke: "var(--jp)", "stroke-width": 2 });
   });
   const line = (data, c) => el("path", { d: "M" + data.map(([d, v]) => `${X(d)},${YP(v)}`).join(" L"), fill: "none", stroke: c, "stroke-width": 2.5, "stroke-linejoin": "round" });
@@ -321,10 +452,10 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;",
 
 // past calls
 $("#calls").innerHTML = DATA.calls.map(c => `<tr><td class="card"><span translate="no">${esc(c.name)}</span><span class="d">${fmtDate(c.day)}</span></td><td>${c.prior}% → ${c.share}%</td>
-  <td class="r">$${c.price.toFixed(2)}</td><td class="r ${c.ret >= 0 ? "up" : "down"}">${c.ret >= 0 ? "+" : "−"}${Math.abs(c.ret)}%</td></tr>`).join("");
+  <td class="r">$${c.price.toFixed(2)}</td><td class="r big ${c.ret >= 0 ? "up" : "down"}">${c.ret >= 0 ? "+" : "−"}${Math.abs(c.ret)}%</td></tr>`).join("");
 
 // this weekend
-$("#watch").innerHTML = DATA.watch.map(w => `<tr><td class="card" translate="no">${esc(w.name)}</td><td>${w.old}% → <b>${w.now}%</b></td>
+$("#watch").innerHTML = DATA.watch.map(w => `<tr><td class="card" translate="no">${esc(w.name)}</td><td>${w.old}% → <b class="jpc">${w.now}%</b></td>
   <td class="r">${w.usd == null ? "–" : "$" + w.usd.toFixed(2)}</td><td class="r">${w.eur == null ? "–" : "€" + w.eur.toFixed(2)}</td></tr>`).join("");
 
 // waitlist form
