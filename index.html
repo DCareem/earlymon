@@ -4,14 +4,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>EarlyMon</title>
-<meta name="description" content="Japan plays every Pokémon card set 3 to 4 months before the English release. We watch Japan's tournaments every week and flag the cards that are rising there while they are still cheap in English.">
+<meta name="description" content="Japan plays every Pokémon card set 3 to 4 months before the English release. EarlyMon reads Japan's tournaments every week and flags the cards rising there while they are still cheap in English.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f4f6f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1319" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dcareem.github.io/earlymon/">
+<meta property="og:title" content="EarlyMon: Pokémon cards rising in Japan, before the English price moves">
+<meta property="og:description" content="Unfair Stamp went from $1.20 to $15.23 in 9 weeks after Japan started winning with it. EarlyMon flags the cards rising in Japan's tournaments while they are still cheap in English.">
+<meta property="og:image" content="https://dcareem.github.io/earlymon/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="EarlyMon. Unfair Stamp: Japan's winning decks 3% to 18%, US price $1.20 to $15.23.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23c8102e'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
+/* Layout: one reading column; the hero pairs the thesis with its proof (a past signal as a price "receipt"). */
 :root {
-  --bg: #f4f6f9; --panel: #ffffff; --ink: #1b2130; --muted: #5d6677; --faint: #8b93a3; --line: #dce1e9; --soft: #eaeef4;
-  --jp: #c8102e; --jp-soft: #fbe3e7; --us: #2b5fd9; --eu: #c77d00; --good: #1e7b4f; --bad: #b3372f;
+  --bg: #f4f6f9; --panel: #ffffff; --ink: #1b2130; --muted: #5d6677; --faint: #7b8394; --line: #dce1e9; --soft: #eaeef4;
+  --jp: #c8102e; --jp-soft: #fbe3e7; --on-jp: #ffffff; --us: #2b5fd9; --eu: #b06e00; --good: #1e7b4f; --bad: #b3372f;
   --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
@@ -19,28 +33,52 @@
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0f1319; --panel: #171c24; --ink: #e7eaf0; --muted: #a0a9b8; --faint: #6f7888; --line: #283040; --soft: #1e2530;
-    --jp: #ff5a6e; --jp-soft: #3a1820; --us: #7ea2ff; --eu: #f2b84b; --good: #5cc48a; --bad: #ef7d73;
+    --bg: #0f1319; --panel: #171c24; --ink: #e7eaf0; --muted: #a0a9b8; --faint: #7d8697; --line: #283040; --soft: #1e2530;
+    --jp: #ff5a6e; --jp-soft: #3a1820; --on-jp: #1a060a; --us: #7ea2ff; --eu: #f2b84b; --good: #5cc48a; --bad: #ef7d73;
     color-scheme: dark;
   }
 }
 * { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 var(--body); }
-.wrap { max-width: 980px; margin: 0 auto; padding: 28px 20px 80px; }
+a, button, label, summary { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 3px solid var(--us); outline-offset: 2px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: 16px; top: -60px; background: var(--panel); color: var(--ink); padding: 8px 14px; border-radius: 8px; z-index: 2; }
+.skip:focus { top: 12px; }
+.wrap { max-width: 1000px; margin: 0 auto; padding: 28px 20px 80px; }
 .prose { max-width: 64ch; }
 h1, h2, h3 { font-family: var(--display); line-height: 1.1; text-wrap: balance; margin: 0; }
-h1 { font-size: clamp(38px, 6.4vw, 62px); font-weight: 800; letter-spacing: -0.02em; }
+h1 { font-size: clamp(36px, 6vw, 60px); font-weight: 800; letter-spacing: -0.02em; }
 h1 em { font-style: normal; color: var(--jp); }
-h2 { font-size: clamp(26px, 3.6vw, 34px); font-weight: 800; margin-top: 64px; }
-p { margin: 12px 0; }
-a { color: var(--us); }
+h2 { font-size: clamp(26px, 3.6vw, 34px); font-weight: 800; margin-top: 64px; scroll-margin-top: 20px; }
+p { margin: 12px 0; text-wrap: pretty; }
+a { color: var(--us); text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+
 .brand { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 36px; }
 .brand b { font: 800 20px var(--display); }
 .brand b span { color: var(--jp); }
-.brand a.cta-small { font: 600 14px var(--body); text-decoration: none; color: var(--ink); border: 1px solid var(--line); padding: 7px 14px; border-radius: 999px; background: var(--panel); }
-.lede { font-size: 20px; color: var(--muted); max-width: 58ch; margin-top: 16px; }
-.cta { display: inline-block; margin-top: 22px; background: var(--jp); color: #fff; font: 700 17px var(--body); padding: 13px 22px; border-radius: 10px; text-decoration: none; }
-.cta:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--us); outline-offset: 2px; }
+.cta-small { font: 600 14px var(--body); text-decoration: none; color: var(--ink); border: 1px solid var(--line); padding: 7px 14px; border-radius: 999px; background: var(--panel); transition: border-color .15s; }
+.cta-small:hover { border-color: var(--ink); }
+
+/* hero: thesis left, proof right; stacks on phones */
+.hero { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 36px; align-items: end; }
+.lede { font-size: 19px; color: var(--muted); max-width: 56ch; margin-top: 16px; }
+.cta { display: inline-block; margin-top: 18px; background: var(--jp); color: var(--on-jp); font: 700 17px var(--body); padding: 13px 22px; border-radius: 10px; text-decoration: none; transition: background-color .15s; }
+.cta:hover, button:hover:not(:disabled) { background: color-mix(in srgb, var(--jp) 86%, var(--ink)); }
+.cta-note { font-size: 14.5px; color: var(--muted); margin: 10px 0 0; }
+.receipt { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; font-variant-numeric: tabular-nums; }
+.receipt-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.receipt-head .set { font: 600 12px var(--mono); color: var(--faint); letter-spacing: .04em; }
+.receipt-name { display: block; font: 800 24px/1.15 var(--display); margin: 10px 0 12px; }
+.receipt dl { margin: 0; display: grid; gap: 0; }
+.receipt dl div { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 8px 0; border-top: 1px dashed var(--line); }
+.receipt dt { font-size: 14.5px; color: var(--muted); }
+.receipt dd { margin: 0; font: 700 18px var(--display); white-space: nowrap; }
+.receipt p { font-size: 14px; color: var(--muted); margin: 10px 0 0; }
+
 .small { font-size: 14.5px; color: var(--muted); }
 .jpc { color: var(--jp); font-weight: 700; } .usc { color: var(--us); font-weight: 700; } .euc { color: var(--eu); font-weight: 700; }
 .figure { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 22px; margin: 24px 0; }
@@ -48,62 +86,102 @@ a { color: var(--us); }
 .figure .sub { font-size: 14px; color: var(--muted); margin: 4px 0 12px; }
 .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 14px; color: var(--muted); }
 .legend i { display: inline-block; width: 20px; height: 4px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
-.svgwrap { overflow-x: auto; }
-.svgwrap svg { display: block; width: 100%; min-width: 540px; height: auto; }
-.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin: 22px 0; }
+.svgwrap svg { display: block; width: 100%; height: auto; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin: 22px 0; }
 .stats div { background: var(--panel); padding: 16px 18px; }
-.stats b { display: block; font: 800 30px/1.05 var(--display); }
+.stats b { display: block; font: 800 30px/1.05 var(--display); font-variant-numeric: tabular-nums; }
 .stats span { font-size: 14.5px; color: var(--muted); }
+
 .tablewrap { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; margin: 16px 0; }
 table { border-collapse: collapse; width: 100%; font-size: 15px; font-variant-numeric: tabular-nums; }
-th { text-align: left; font: 600 11.5px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--faint); padding: 10px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { text-align: left; vertical-align: bottom; font: 600 11.5px/1.35 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--faint); padding: 10px 12px; border-bottom: 1px solid var(--line); }
 td { padding: 8px 12px; border-bottom: 1px solid var(--soft); white-space: nowrap; }
+td.card { white-space: normal; }
+td.card .d { display: block; font: 12px var(--mono); color: var(--faint); }
 tr:last-child td { border-bottom: 0; }
 td.r, th.r { text-align: right; }
 td.up { color: var(--good); font-weight: 700; } td.down { color: var(--bad); font-weight: 700; }
-.pill { display: inline-block; font: 600 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; background: var(--jp-soft); color: var(--jp); }
+.pill { display: inline-block; font: 600 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; background: var(--jp-soft); color: var(--jp); vertical-align: middle; }
+
 .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 20px 0; }
 .steps div { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
 .steps b { display: block; font: 700 18px var(--display); margin-bottom: 4px; }
 .steps span { font-size: 15.5px; color: var(--muted); }
-.plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 20px 0; }
-.plan { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
-.plan.paid { border: 2px solid var(--jp); }
-.plan h3 { font-size: 20px; }
-.plan .price { font: 800 30px var(--display); margin: 8px 0; }
+
+/* waitlist: the plan cards are the plan choice */
+form { margin-top: 20px; }
+fieldset { border: 0; padding: 0; margin: 0 0 18px; min-width: 0; }
+legend, label.field { font-weight: 700; display: block; margin-bottom: 8px; padding: 0; }
+.plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.plan { position: relative; display: block; background: var(--panel); border: 2px solid var(--line); border-radius: 14px; padding: 18px 20px 20px; cursor: pointer; transition: border-color .15s; }
+.plan:hover { border-color: var(--faint); }
+.plan:has(input:checked) { border-color: var(--jp); }
+.plan:has(input:focus-visible) { outline: 3px solid var(--us); outline-offset: 2px; }
+.plan input { position: absolute; top: 20px; right: 20px; width: 20px; height: 20px; margin: 0; accent-color: var(--jp); }
+.plan .name { display: block; font: 800 20px var(--display); padding-right: 30px; }
+.plan .price { display: block; font: 800 30px var(--display); margin: 6px 0 8px; }
 .plan .price small { font: 400 15px var(--body); color: var(--muted); }
-.plan ul { margin: 8px 0 0; padding-left: 20px; font-size: 15.5px; }
-form { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 22px; max-width: 620px; }
-fieldset { border: 0; padding: 0; margin: 0 0 16px; }
-legend, label.field { font-weight: 700; display: block; margin-bottom: 6px; }
+.plan .item { display: block; font-size: 15.5px; padding-left: 18px; position: relative; }
+.plan .item::before { content: ""; position: absolute; left: 3px; top: .62em; width: 6px; height: 6px; border-radius: 50%; background: var(--faint); }
+.fields { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 22px; max-width: 640px; }
 input[type=email] { width: 100%; font: 16px var(--body); padding: 11px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); }
+input[type=email]:hover { border-color: var(--faint); }
+.optional { font-weight: 400; color: var(--faint); font-size: 14px; }
 .choices { display: flex; flex-wrap: wrap; gap: 8px; }
-.choices label { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; cursor: pointer; font-size: 15.5px; }
-.choices input { accent-color: var(--jp); }
-.consent { display: flex; gap: 10px; align-items: flex-start; font-size: 14.5px; color: var(--muted); margin: 6px 0 16px; }
-button { font: 700 17px var(--body); background: var(--jp); color: #fff; border: 0; padding: 13px 22px; border-radius: 10px; cursor: pointer; }
+.choices label { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; cursor: pointer; font-size: 15.5px; transition: border-color .15s; }
+.choices label:hover { border-color: var(--faint); }
+.choices label:has(input:checked) { border-color: var(--jp); background: var(--jp-soft); }
+.choices input, .consent input { accent-color: var(--jp); margin: 0; }
+.consent { display: flex; gap: 10px; align-items: flex-start; font-size: 14.5px; color: var(--muted); margin: 6px 0 16px; cursor: pointer; }
+.consent input { margin-top: 4px; flex: none; }
+button { font: 700 17px var(--body); background: var(--jp); color: var(--on-jp); border: 0; padding: 13px 22px; border-radius: 10px; cursor: pointer; transition: background-color .15s; }
 button:disabled { opacity: .6; cursor: default; }
 .msg { margin-top: 12px; font-weight: 700; }
+.msg:empty { display: none; }
 .msg.ok { color: var(--good); } .msg.err { color: var(--bad); }
+
 details { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; margin: 10px 0; max-width: 72ch; }
 summary { font-weight: 700; cursor: pointer; }
+summary:hover { color: var(--jp); }
 footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13.5px; color: var(--faint); max-width: 80ch; }
-@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+footer p { margin: 0 0 8px; }
+
+@media (max-width: 760px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+}
+@media (max-width: 520px) {
+  .wrap { padding: 20px 16px 64px; }
+  .brand { margin-bottom: 26px; }
+  .lede { font-size: 18px; }
+  .figure { padding: 16px; }
+  .stats b { font-size: 26px; }
+  .stats div { padding: 14px; }
+  table { font-size: 14px; }
+  th { font-size: 10.5px; letter-spacing: .04em; padding: 8px; }
+  td { padding: 8px; }
+  .fields { padding: 18px 16px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
 <body>
+<a class="skip" href="#join">Skip to the waitlist</a>
 <div class="wrap">
-  <div class="brand"><b>Early<span>Mon</span></b><a class="cta-small" href="#join">Join the waitlist</a></div>
+  <div class="brand"><b translate="no">Early<span>Mon</span></b><a class="cta-small" href="#join">Join the waitlist</a></div>
 
-  <header>
-    <h1>Pokémon cards rising in <em>Japan</em>, before the English price moves</h1>
-    <p class="lede">Japan plays every Pokémon card set 3 to 4 months before the English release. We read Japan's tournament results every week and flag the cards that are starting to win there while they are still cheap on TCGplayer and Cardmarket.</p>
-    <a class="cta" href="#join">Get the weekly list</a>
+  <header class="hero">
+    <div>
+      <h1>Pokémon cards rising in <em>Japan</em>, before the English price moves</h1>
+      <p class="lede">Japan plays every Pokémon card set 3 to 4 months before the English release. We read Japan's tournament results every week and flag the cards that are starting to win there while they are still cheap on TCGplayer and Cardmarket.</p>
+      <a class="cta" href="#join">Get the weekly list</a>
+      <p class="cta-note">Free weekly email, or $5/month early access at launch. No payment now.</p>
+    </div>
+    <aside class="receipt" aria-label="A past signal: Unfair Stamp"><div class="receipt-head"><span class="pill">past signal</span><span class="set">TWM 165</span></div><b class="receipt-name" translate="no">Unfair Stamp</b><dl><div><dt>Japan’s winning decks</dt><dd class="jpc">3% → 18%</dd></div><div><dt>US, TCGplayer</dt><dd class="usc">$1.20 → $15.23</dd></div><div><dt>Europe, Cardmarket</dt><dd class="euc">€1.31 → €10.43</dd></div></dl><p>Japan signal in the week of 26 Jan 2026. US price 9 weeks later; Europe by the week of 27 Apr 2026. <a href="#record">See all 15 past signals, misses included</a>.</p></aside>
   </header>
 
   <h2>One card, three prices</h2>
   <div class="figure">
-    <h3>Unfair Stamp</h3>
+    <h3 translate="no">Unfair Stamp</h3>
     <div class="sub">Weekly, real data. Red area: share of Japan's City League winning decks that played it. Lines: its English price in the US and in Europe.</div>
     <div class="legend">
       <span><i style="background:var(--jp);opacity:.55;height:12px"></i>Japan: share of winning decks (left)</span>
@@ -114,24 +192,24 @@ footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--line);
     <p class="small">Week of 26 Jan 2026: Japan goes from 3% to 18% of winning decks while it costs <span class="usc">$1.20</span> in the US. Week of 30 Mar 2026: <span class="usc">$15.23</span>. Europe follows later (<span class="euc">€1.31 → €10.43</span> by the week of 27 Apr 2026). Latest: <span class="usc">$15.59</span> / <span class="euc">€9.38</span>.</p>
   </div>
 
-  <h2>Our record on past seasons</h2>
-  <div class="prose"><p>We replayed two years of Japanese results with rules fixed in advance: each time an older card suddenly rose in Japan's winning decks because of new Japanese cards, what did its English price do over the next 60 days, compared with the whole card market?</p></div>
+  <h2 id="record">Our record on past seasons</h2>
+  <div class="prose"><p>We replayed Japan's results from 2024 to May 2026 with rules fixed in advance: each time an older card suddenly rose in Japan's winning decks because of new Japanese cards, what did its English price do over the next 60 days, compared with the whole card market?</p></div>
   <div class="stats">
-    <div><b>15</b><span>calls in two seasons (cards worth $0.75 or more)</span></div>
+    <div><b>15</b><span>calls since 2024 (cards worth $0.75 or more)</span></div>
     <div><b>12 of 15</b><span>beat the card market 60 days later</span></div>
     <div><b class="usc">+43%</b><span>typical gain in the US at 60 days, on top of the market</span></div>
     <div><b class="euc">+36%</b><span>typical gain in Europe at 90 days: Europe reacts later</span></div>
   </div>
   <div class="tablewrap"><table>
-    <thead><tr><th>Japan signal</th><th>Card</th><th>Share of Japan's winning decks</th><th class="r">US price then</th><th class="r">60 days later, vs market</th></tr></thead>
+    <thead><tr><th>Card, date of Japan signal</th><th>Share of Japan's winning decks</th><th class="r">US price then</th><th class="r">60 days later, vs market</th></tr></thead>
     <tbody id="calls"></tbody>
   </table></div>
-  <p class="small">Every row, including the misses. "vs market" = the card's price change minus the median change of all tracked cards over the same days. Past results do not guarantee future ones.</p>
+  <p class="small">Every row, including the misses. “vs market” is the card's price change minus the median change of all tracked cards over the same days. Past results do not guarantee future ones.</p>
 
   <h2>This weekend in Japan <span class="pill">new season</span></h2>
-  <div class="prose"><p>Japan's new City League season started on 25 Sep–28 Sep 2026: 62 tournaments, 62 winning decks. These English cards appear far more often than at the end of last season. One weekend is a signal to watch, not a call yet; we confirm or drop them over the next weeks.</p></div>
+  <div class="prose"><p>Japan's new City League season started on 26–28 Sep 2026: 62 tournaments, 62 winning decks. These English cards appear far more often than at the end of last season. One weekend is a signal to watch, not a call yet; we confirm or drop them over the next weeks.</p></div>
   <div class="tablewrap"><table>
-    <thead><tr><th>Card</th><th>Share of winning decks: last season → this weekend</th><th class="r">US</th><th class="r">Europe</th></tr></thead>
+    <thead><tr><th>Card</th><th>Share of winning decks, last season → this weekend</th><th class="r">US</th><th class="r">Europe</th></tr></thead>
     <tbody id="watch"></tbody>
   </table></div>
 
@@ -143,41 +221,43 @@ footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--line);
   </div>
 
   <h2 id="join">Join the waitlist</h2>
-  <div class="plans">
-    <div class="plan"><h3>Free</h3><div class="price">$0</div><ul><li>A weekly email with two or three picks</li><li>The season's biggest movers</li></ul></div>
-    <div class="plan paid"><h3>Early access</h3><div class="price">$5 <small>/ month at launch</small></div><ul><li>The full weekly list</li><li>Alerts as soon as the weekend's Japanese results are in</li><li>US and European prices for every pick</li></ul></div>
-  </div>
   <form id="waitlist" novalidate><input type="hidden" name="access_key" value="1ff23075-a99e-469b-a9a4-4619c6061900"><input type="hidden" name="subject" value="New waitlist sign-up"><input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
     <fieldset>
-      <label class="field" for="email">Email</label>
-      <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@example.com">
-    </fieldset>
-    <fieldset>
-      <legend>Which one do you want?</legend>
-      <div class="choices">
-        <label><input type="radio" name="plan" value="paid-5-month" id="plan-paid" checked> Early access, $5/month at launch</label>
-        <label><input type="radio" name="plan" value="free" id="plan-free"> Free weekly email</label>
+      <legend>Pick one. No payment is taken now.</legend>
+      <div class="plans">
+        <label class="plan" for="plan-free"><input type="radio" name="plan" value="free" id="plan-free">
+          <span class="name">Free</span><span class="price">$0</span>
+          <span class="item">A weekly email with two or three picks</span><span class="item">The season's biggest movers</span></label>
+        <label class="plan" for="plan-paid"><input type="radio" name="plan" value="paid-5-month" id="plan-paid">
+          <span class="name">Early access</span><span class="price">$5 <small>/ month at launch</small></span>
+          <span class="item">The full weekly list</span><span class="item">Alerts as soon as the weekend's Japanese results are in</span><span class="item">US and European prices for every pick</span></label>
       </div>
     </fieldset>
-    <fieldset>
-      <legend>Where do you buy cards?</legend>
-      <div class="choices">
-        <label><input type="radio" name="region" value="us" id="region-us"> US (TCGplayer)</label>
-        <label><input type="radio" name="region" value="eu" id="region-eu"> Europe (Cardmarket)</label>
-        <label><input type="radio" name="region" value="other" id="region-other"> Elsewhere</label>
-      </div>
-    </fieldset>
-    <fieldset>
-      <legend>You mostly…</legend>
-      <div class="choices">
-        <label><input type="radio" name="profile" value="player" id="profile-player"> play tournaments</label>
-        <label><input type="radio" name="profile" value="reseller" id="profile-reseller"> buy and resell</label>
-        <label><input type="radio" name="profile" value="collector" id="profile-collector"> collect</label>
-      </div>
-    </fieldset>
-    <label class="consent"><input type="checkbox" id="consent" name="consent" required> Email me about EarlyMon's launch and the weekly list. No payment is taken now. You can ask to be removed at any time by replying to any email.</label>
-    <button type="submit" id="submit">Join the waitlist</button>
-    <div class="msg" id="msg" role="status" aria-live="polite"></div>
+    <div class="fields">
+      <fieldset>
+        <label class="field" for="email">Email</label>
+        <input type="email" id="email" name="email" required autocomplete="email" spellcheck="false" placeholder="you@example.com">
+      </fieldset>
+      <fieldset>
+        <legend>Where do you buy cards? <span class="optional">(optional)</span></legend>
+        <div class="choices">
+          <label><input type="radio" name="region" value="us" id="region-us"> US (TCGplayer)</label>
+          <label><input type="radio" name="region" value="eu" id="region-eu"> Europe (Cardmarket)</label>
+          <label><input type="radio" name="region" value="other" id="region-other"> Elsewhere</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>You mostly… <span class="optional">(optional)</span></legend>
+        <div class="choices">
+          <label><input type="radio" name="profile" value="player" id="profile-player"> play tournaments</label>
+          <label><input type="radio" name="profile" value="reseller" id="profile-reseller"> buy and resell</label>
+          <label><input type="radio" name="profile" value="collector" id="profile-collector"> collect</label>
+        </div>
+      </fieldset>
+      <label class="consent"><input type="checkbox" id="consent" name="consent" required> Email me about EarlyMon's launch and the weekly list. No payment is taken now. You can ask to be removed at any time by replying to any email.</label>
+      <button type="submit" id="submit">Join the waitlist</button>
+      <div class="msg" id="msg" role="status" aria-live="polite"></div>
+    </div>
   </form>
 
   <h2>Questions</h2>
@@ -187,9 +267,9 @@ footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--line);
   <details><summary>Where do the prices come from?</summary><p>Public market prices from TCGplayer (US) and Cardmarket (Europe), via Limitless TCG.</p></details>
 
   <footer>
-    EarlyMon is not affiliated with, endorsed by or sponsored by The Pokémon Company, Nintendo, Game Freak, Creatures, TCGplayer or Cardmarket. Pokémon and card names are trademarks of their owners.
-    Tournament results and prices: Limitless TCG. Data updated 29 Sep 2026.
-    Privacy: the waitlist stores your email and answers only to contact you about EarlyMon; they are held by our form provider and never sold. To be removed, reply to any email from us.
+    <p>EarlyMon is not affiliated with, endorsed by or sponsored by The Pokémon Company, Nintendo, Game Freak, Creatures, TCGplayer or Cardmarket. Pokémon and card names are trademarks of their owners.</p>
+    <p>Tournament results and prices: Limitless TCG. Data updated 29 Sep 2026.</p>
+    <p>Privacy: the waitlist stores your email and answers only to contact you about EarlyMon; they are held by our form provider and never sold. To be removed, reply to any email from us.</p>
   </footer>
 </div>
 
@@ -197,27 +277,31 @@ footer { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--line);
 const DATA = {"calls":[{"day":"2024-03-17","name":"Pidgeot ex","prior":9,"share":20,"price":7.86,"ret":30},{"day":"2024-12-15","name":"Latias ex","prior":3,"share":16,"price":2.39,"ret":49},{"day":"2024-12-29","name":"Radiant Alakazam","prior":8,"share":18,"price":0.94,"ret":54},{"day":"2024-12-29","name":"Sparkling Crystal","prior":6,"share":17,"price":0.84,"ret":67},{"day":"2025-02-16","name":"Mew ex","prior":8,"share":19,"price":7.62,"ret":-2},{"day":"2025-02-23","name":"Wellspring Mask Ogerpon ex","prior":2,"share":16,"price":1.11,"ret":47},{"day":"2025-03-02","name":"Bloodmoon Ursaluna ex","prior":7,"share":31,"price":1.36,"ret":62},{"day":"2025-03-02","name":"Terapagos ex","prior":4,"share":18,"price":2.97,"ret":40},{"day":"2025-03-02","name":"Pikachu ex","prior":1,"share":19,"price":7.61,"ret":11},{"day":"2025-12-28","name":"Dragapult ex","prior":9,"share":19,"price":0.95,"ret":43},{"day":"2025-12-28","name":"Hilda","prior":8,"share":21,"price":1.7,"ret":-14},{"day":"2026-02-01","name":"Unfair Stamp","prior":3,"share":18,"price":1.2,"ret":1155},{"day":"2026-02-01","name":"Fezandipiti ex","prior":0,"share":18,"price":3.31,"ret":25},{"day":"2026-03-08","name":"Teal Mask Ogerpon ex","prior":9,"share":24,"price":2.28,"ret":71},{"day":"2026-04-12","name":"Poké Pad","prior":0,"share":79,"price":0.75,"ret":-61}],"watch":[{"name":"Judge","old":19,"now":45,"usd":0.15,"eur":0.07,"rise":0.26318006740491096},{"name":"Secret Box","old":3,"now":18,"usd":5.55,"eur":8.38,"rise":0.14943428021184402},{"name":"Dunsparce","old":14,"now":27,"usd":5.76,"eur":6.75,"rise":0.1342681752527684},{"name":"Dudunsparce","old":14,"now":27,"usd":1.86,"eur":1.6,"rise":0.1342681752527684},{"name":"Gravity Mountain","old":6,"now":19,"usd":0.16,"eur":0.08,"rise":0.13384689455946075},{"name":"Buddy-Buddy Poffin","old":62,"now":73,"usd":0.92,"eur":0.64,"rise":0.11013480982185853},{"name":"Dudunsparce ex","old":9,"now":19,"usd":0.77,"eur":0.8,"rise":0.10772749157438613},{"name":"Shaymin","old":23,"now":34,"usd":0.25,"eur":0.14,"rise":0.10736639383726526},{"name":"Air Balloon","old":15,"now":26,"usd":0.26,"eur":0.26,"rise":0.10321376986037553},{"name":"Switch","old":13,"now":23,"usd":0.16,"eur":0.09,"rise":0.0952094366875301}],"chart":{"start":"2025-11-03","end":"2026-09-29","share":[["2025-11-03",0.031],["2025-11-10",0.027],["2025-11-17",0.0],["2025-11-24",0.012],["2025-12-01",0.0],["2025-12-08",0.0],["2025-12-15",0.0],["2025-12-22",0.018],["2025-12-29",0.026],["2026-01-05",0.05],["2026-01-12",0.016],["2026-01-19",0.145],["2026-01-26",0.209],["2026-02-02",0.457],["2026-02-09",0.49],["2026-02-23",0.537],["2026-03-02",0.675],["2026-03-09",0.545],["2026-03-16",0.453],["2026-03-23",0.643],["2026-03-30",0.574],["2026-04-06",0.568],["2026-04-13",0.627],["2026-04-20",0.643],["2026-04-27",0.553],["2026-05-04",0.725],["2026-09-21",0.407]],"us":[["2025-11-03",1.17],["2025-11-10",0.89],["2025-11-17",0.98],["2025-11-24",0.79],["2025-12-01",0.89],["2025-12-08",0.84],["2025-12-15",0.85],["2025-12-22",0.8],["2025-12-29",0.83],["2026-01-05",0.86],["2026-01-12",0.86],["2026-01-19",1.12],["2026-01-26",1.17],["2026-02-02",1.62],["2026-02-09",2.21],["2026-02-16",2.05],["2026-02-23",11.37],["2026-03-02",9.82],["2026-03-09",9.94],["2026-03-16",9.96],["2026-03-23",12.24],["2026-03-30",15.23],["2026-04-06",17.66],["2026-04-13",16.58],["2026-04-20",18.18],["2026-04-27",18.83],["2026-05-04",16.38],["2026-05-11",15.33],["2026-05-18",15.0],["2026-05-25",15.23],["2026-06-01",15.62],["2026-06-08",16.09],["2026-06-15",15.93],["2026-06-22",15.02],["2026-06-29",13.87],["2026-07-06",12.57],["2026-07-13",12.41],["2026-07-20",12.34],["2026-07-27",12.46],["2026-08-03",12.79],["2026-08-10",12.52],["2026-08-17",13.17],["2026-08-24",13.28],["2026-08-31",14.48],["2026-09-07",14.7],["2026-09-14",16.11],["2026-09-21",14.49],["2026-09-28",15.59]],"eu":[["2025-11-03",1.27],["2025-11-10",1.19],["2025-11-17",1.08],["2025-11-24",1.05],["2025-12-01",1.17],["2025-12-08",1.29],["2025-12-15",1.24],["2025-12-22",1.33],["2025-12-29",1.27],["2026-01-05",1.25],["2026-01-12",1.29],["2026-01-19",1.4],["2026-01-26",1.31],["2026-02-02",1.22],["2026-02-09",1.27],["2026-02-16",1.35],["2026-02-23",2.04],["2026-03-02",4.33],["2026-03-09",7.57],["2026-03-16",8.73],["2026-03-23",7.86],["2026-03-30",7.6],["2026-04-06",8.25],["2026-04-13",9.67],["2026-04-20",10.2],["2026-04-27",10.43],["2026-05-04",10.25],["2026-05-11",9.52],["2026-05-18",9.33],["2026-05-25",9.78],["2026-06-01",10.41],["2026-06-08",10.7],["2026-06-15",10.05],["2026-06-22",10.11],["2026-06-29",10.1],["2026-07-06",9.53],["2026-07-13",9.12],["2026-07-20",9.03],["2026-07-27",8.87],["2026-08-03",8.75],["2026-08-10",8.88],["2026-08-17",9.32],["2026-08-24",10.35],["2026-08-31",10.07],["2026-09-07",9.73],["2026-09-14",9.53],["2026-09-21",9.55],["2026-09-28",9.38]],"gap":["2026-05-04","2026-09-21"],"months":["2026-01-01","2026-03-01","2026-05-01","2026-07-01","2026-09-01"]}};
 const FORM_ENDPOINT = "https://api.web3forms.com/submit";
 const $ = s => document.querySelector(s);
-const fmtDate = d => new Date(d).toLocaleString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+const fmtDate = d => new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric" }).format(new Date(d));
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 
-// chart
+// chart: a narrower drawing on phones so its labels stay readable
 (function () {
-  const W = 920, H = 360, L = 58, R = 58, T = 22, B = 42;
+  const svg = $("#stamp"), ns = "http://www.w3.org/2000/svg";
+  const narrow = svg.parentNode.clientWidth < 600;
+  const W = narrow ? 560 : 920, H = narrow ? 380 : 360, L = narrow ? 50 : 58, R = narrow ? 40 : 58, T = 22, B = 42, FS = narrow ? 16 : 12;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
   const t0 = new Date(DATA.chart.start), t1 = new Date(DATA.chart.end);
   const X = d => L + (new Date(d) - t0) / (t1 - t0) * (W - L - R);
   const YS = v => T + (1 - v / 0.8) * (H - T - B);
   const YP = v => T + (1 - v / 20) * (H - T - B);
-  const svg = $("#stamp"), ns = "http://www.w3.org/2000/svg";
   const el = (tag, a) => { const e = document.createElementNS(ns, tag); for (const k in a) e.setAttribute(k, a[k]); svg.appendChild(e); return e; };
-  const text = (x, y, s, a = {}) => { const e = el("text", { x, y, "font-size": 12, "font-family": "JetBrains Mono, monospace", fill: "var(--muted)", ...a }); e.textContent = s; return e; };
+  const text = (x, y, s, a = {}) => { const e = el("text", { x, y, "font-size": FS, "font-family": "JetBrains Mono, monospace", fill: "var(--muted)", ...a }); e.textContent = s; return e; };
   [0, 5, 10, 15, 20].forEach(v => {
     el("line", { x1: L, x2: W - R, y1: YP(v), y2: YP(v), stroke: "var(--line)" });
-    text(W - R + 8, YP(v) + 4, String(v));
-    text(L - 8, YP(v) + 4, (v * 4) + "%", { "text-anchor": "end" });
+    text(W - R + 6, YP(v) + 5, String(v));
+    text(L - 6, YP(v) + 5, (v * 4) + "%", { "text-anchor": "end" });
   });
-  DATA.chart.months.forEach(d => text(X(d), H - B + 20, new Date(d).toLocaleString("en-GB", { month: "short", year: "2-digit" }), { "text-anchor": "middle" }));
+  const monthFmt = new Intl.DateTimeFormat("en-GB", { month: "short", year: "2-digit" });
+  DATA.chart.months.forEach(d => text(X(d), H - B + 22, monthFmt.format(new Date(d)), { "text-anchor": "middle" }));
   if (DATA.chart.gap) {
     el("rect", { x: X(DATA.chart.gap[0]), y: T, width: X(DATA.chart.gap[1]) - X(DATA.chart.gap[0]), height: H - T - B, fill: "var(--soft)", opacity: 0.7 });
-    text((X(DATA.chart.gap[0]) + X(DATA.chart.gap[1])) / 2, T + 16, "Japan's off-season", { "text-anchor": "middle", "font-size": 11 });
+    text((X(DATA.chart.gap[0]) + X(DATA.chart.gap[1])) / 2, T + 18, "Japan's off-season", { "text-anchor": "middle", "font-size": FS - 1 });
   }
   // one area per season: no line across weeks with no Japanese results
   const segs = [[]];
@@ -236,21 +320,23 @@ const fmtDate = d => new Date(d).toLocaleString("en-GB", { day: "numeric", month
 })();
 
 // past calls
-$("#calls").innerHTML = DATA.calls.map(c => `<tr><td>${fmtDate(c.day)}</td><td>${c.name}</td><td>${c.prior}% → ${c.share}%</td>
-  <td class="r">$${c.price.toFixed(2)}</td><td class="r ${c.ret >= 0 ? "up" : "down"}">${c.ret >= 0 ? "+" : ""}${c.ret}%</td></tr>`).join("");
+$("#calls").innerHTML = DATA.calls.map(c => `<tr><td class="card"><span translate="no">${esc(c.name)}</span><span class="d">${fmtDate(c.day)}</span></td><td>${c.prior}% → ${c.share}%</td>
+  <td class="r">$${c.price.toFixed(2)}</td><td class="r ${c.ret >= 0 ? "up" : "down"}">${c.ret >= 0 ? "+" : "−"}${Math.abs(c.ret)}%</td></tr>`).join("");
 
 // this weekend
-$("#watch").innerHTML = DATA.watch.map(w => `<tr><td>${w.name}</td><td>${w.old}% → <b>${w.now}%</b></td>
+$("#watch").innerHTML = DATA.watch.map(w => `<tr><td class="card" translate="no">${esc(w.name)}</td><td>${w.old}% → <b>${w.now}%</b></td>
   <td class="r">${w.usd == null ? "–" : "$" + w.usd.toFixed(2)}</td><td class="r">${w.eur == null ? "–" : "€" + w.eur.toFixed(2)}</td></tr>`).join("");
 
 // waitlist form
 $("#waitlist").addEventListener("submit", async e => {
   e.preventDefault();
   const msg = $("#msg"), btn = $("#submit"), email = $("#email").value.trim();
-  msg.className = "msg";
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg.className = "msg err"; msg.textContent = "Enter a valid email address."; return; }
-  if (!$("#consent").checked) { msg.className = "msg err"; msg.textContent = "Tick the box so we can email you."; return; }
-  if (!FORM_ENDPOINT.startsWith("https://")) { msg.className = "msg err"; msg.textContent = "The waitlist is not connected yet. Please try again later."; return; }
+  const fail = (text, field) => { msg.className = "msg err"; msg.textContent = text; field && field.focus(); };
+  msg.className = "msg"; msg.textContent = "";
+  if (!e.target.querySelector("input[name=plan]:checked")) return fail("Pick Free or Early access above.", $("#plan-free"));
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail("Enter a valid email address, like name@example.com.", $("#email"));
+  if (!$("#consent").checked) return fail("Tick the box so we can email you.", $("#consent"));
+  if (!FORM_ENDPOINT.startsWith("https://")) return fail("The waitlist is not connected yet. Please try again later.");
   btn.disabled = true; btn.textContent = "Joining…";
   const fd = new FormData(e.target);
   fd.set("source", location.hostname || "local");
@@ -260,7 +346,7 @@ $("#waitlist").addEventListener("submit", async e => {
     msg.className = "msg ok"; msg.textContent = "You're on the list. We'll email you when the first picks are out.";
     e.target.reset();
   } catch (err) {
-    msg.className = "msg err"; msg.textContent = "Something went wrong. Please try again in a minute.";
+    fail("That didn't go through. Check your connection and press Join again.");
   } finally { btn.disabled = false; btn.textContent = "Join the waitlist"; }
 });
 </script>
